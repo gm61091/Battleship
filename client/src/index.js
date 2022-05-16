@@ -4,8 +4,11 @@ import { Provider } from "react-redux";
 
 import App from './App';
 import store from "./store";
+import checkToken from './utils/checkToken';
 import "bootstrap/dist/css/bootstrap.min.css";
 import './index.css';
+
+checkToken();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

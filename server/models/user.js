@@ -8,13 +8,18 @@ module.exports = (sequelize, DataTypes) => {
         },
         name: {
             type: DataTypes.STRING 
+        },
+        wins: {
+            type: DataTypes.INTEGER,
+            defaultValue: 0 
+        },
+        losses: {
+            type: DataTypes.INTEGER,
+            defaultValue: 0  
         }
     }, {
         freezeTableName: true,
         timestamps: false 
     })
-    // User.associate = models => {
-        
-    // }
     return User;
 }
