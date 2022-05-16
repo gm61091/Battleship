@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
 const Register = () => {
+
+    const navigate = useNavigate();
 
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -14,7 +17,7 @@ const Register = () => {
     const handleSubmit = async event => {
         event.preventDefault();
         if (email && password && name && confirmPassword) {
-            if (!email.value.match(/.+@.+\....+/)) {
+            if (!(email.match(/.+@.+\....+/))) {
                 // please enter valid email address
                 setMessage("there's been an error")
             } else if (password !== confirmPassword) {
@@ -23,7 +26,6 @@ const Register = () => {
             } else {
                 try {
                     const response = await axios.post("/register", { email, password, name });
-                    console.log(response);
                     if (response.status === 200) {
                         navigate("/login");
                     } else if (response.status === 422) {
