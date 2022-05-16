@@ -8,7 +8,7 @@ const secretObj = require("../secrets");
 
 const localLogin = new LocalStrategy({ usernameField: "email" }, async (email, password, done) => {
     try {
-        const record = await db.Users.findAll({ where: { email } });
+        const record = await db.User.findAll({ where: { email } });
         if (record.length) {
             bcrypt.compare(password, record[0].password, (error, match) => {
                 if (error) return done(error);
@@ -33,7 +33,7 @@ passport.use(localLogin);
 
  let jwtOptions = {
     jwtFromRequest: ExtractJwt.fromHeader('authorization'),
-    secretOrKey : secrets.secrets, 
+    secretOrKey: secretObj.secret, 
 }
 
 let jwtLogin = new JwtStrategy(jwtOptions, async (payload, done)=>{
@@ -44,7 +44,7 @@ let jwtLogin = new JwtStrategy(jwtOptions, async (payload, done)=>{
 
         let userID = payload.sub;
 
-        let user = await db.users.findByPk(userID); //{}
+        let user = await db.User.findByPk(userID); //{}
 
         //true - success
 
