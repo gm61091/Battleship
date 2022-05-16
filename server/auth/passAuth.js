@@ -22,4 +22,51 @@ const localLogin = new LocalStrategy({ usernameField: "email" }, async (email, p
     }
 })
 
+
+
 passport.use(localLogin);
+
+/**
+ * JWT Strategy
+ * * check to see if token is valid
+ */
+
+ let jwtOptions = {
+    jwtFromRequest: ExtractJwt.fromHeader('authorization'),
+    secretOrKey : secrets.secrets, 
+}
+
+let jwtLogin = new JwtStrategy(jwtOptions, async (payload, done)=>{
+
+
+    try{
+        //check if user is in db
+
+        let userID = payload.sub;
+
+        let user = await db.users.findByPk(userID); //{}
+
+        //true - success
+
+        if(user){
+            return done(null, user)  //place the user object on req.user
+
+            //req.user = {id, email, password}
+        }
+        else{
+
+            //else - error
+            return done(null, false)
+
+        }
+
+    }
+    catch(error){
+        //error reading db 
+
+        return done(error)
+    }
+
+})
+
+passport.use(jwtLogin)
