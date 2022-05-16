@@ -23,9 +23,14 @@ const Register = () => {
             } else {
                 try {
                     const response = await axios.post("/register", { email, password, name });
-                    if (response.data) {
+                    console.log(response);
+                    if (response.status === 200) {
                         navigate("/login");
+                    } else if (response.status === 422) {
+                        // email already exists
+                        setMessage("there's been an error")
                     } else {
+                        // server error
                         setMessage("there's been an error")
                     }
                 } catch (error) {
