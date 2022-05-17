@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import Form from "react-bootstrap/Form";
@@ -10,6 +11,7 @@ import loadUserStats from "../actions/loadUserStats";
 const Login = () => {
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -18,7 +20,7 @@ const Login = () => {
     const handleSubmit = async event => {
         event.preventDefault();
         if (email && password) {
-            if (email.value.match(/.+@.+\....+/)) {
+            if (email.match(/.+@.+\....+/)) {
                 try {
                     const response = await axios.post("/login", { email, password });
                     if (response.data) {
@@ -62,6 +64,7 @@ const Login = () => {
                 <Button variant="success" onClick={handleSubmit}>
                     Login
                 </Button>
+                <Link to="/register">Register here</Link>
                 {/* {message && <Component />} */}
             </Form>
         </>
