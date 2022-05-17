@@ -4,6 +4,7 @@ const userReducer = (state, action) => {
     if (!state) {
         state = {
             email: "",
+            name: "",
             wins: 0,
             losses: 0
         }
@@ -19,6 +20,11 @@ const userReducer = (state, action) => {
                 ...state,
                 wins: action.data.wins,
                 losses: action.data.losses 
+            }
+        case types.ADD_NAME:
+            return {
+                ...state,
+                name: action.data.name
             }
         default: 
             return state;
