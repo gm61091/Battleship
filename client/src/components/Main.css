@@ -1,0 +1,44 @@
+.background {
+    background-color: green;
+    height: 100vh;
+}
+
+.gameplay {
+    width: 90vw;
+    margin: auto;
+    border: red solid 1px;
+    display: flex;
+}
+
+.player-board, .right-column {
+    height: 76vh;
+}
+
+.right-column {
+    width: 40vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.player-board {
+    width: 51vw;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.computer-board {
+    height: 45vh;
+    background-color: black;
+}
+
+.message-box {
+    height: 27.5vh;
+    background-color: blue;
+}
+
+.game-btns {
+    border: red solid 1px;
+    width: 90vw;
+    margin: auto;
+}
