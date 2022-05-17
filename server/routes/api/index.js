@@ -1,5 +1,5 @@
 const router = require("express").Router();
 
-// router.use("/endpoint", require("./endpointFileName"))
+router.use("/losses", require("./losses"))
 
 module.exports = router;

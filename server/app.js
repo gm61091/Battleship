@@ -9,6 +9,7 @@ app.use(express.json());
 app.use(require("./routes/login"))
 app.use(require("./routes/register"))
 app.use(require("./routes/protected"))
+app.use(require("./routes/index"))
 
 db.sequelize.sync({ force: false })
 .then(() => {
