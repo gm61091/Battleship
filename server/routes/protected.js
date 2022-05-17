@@ -8,8 +8,14 @@ require('../auth/passAuth')
 
 let requireJwt = passport.authenticate('jwt', {session: false})
 
-router.get('/protected', requireJwt, (req,res) =>{
-    res.json({isValid: true})
+router.get('/protected', requireJwt, (req, res) =>{
+    res.json({
+        isValid: true,
+        wins: req.user.wins,
+        losses: req.user.losses,
+        name: req.user.name,
+        email: req.user.email
+    })
 })
 
 module.exports = router;

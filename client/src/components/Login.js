@@ -7,6 +7,7 @@ import Button from "react-bootstrap/Button";
 import addToken from "../actions/addToken";
 import addEmail from "../actions/addEmail";
 import loadUserStats from "../actions/loadUserStats";
+import addName from "../actions/addName"
 
 const Login = () => {
 
@@ -26,6 +27,7 @@ const Login = () => {
                     if (response.data) {
                         dispatch(addToken(response.data.token));
                         dispatch(addEmail(email));
+                        dispatch(addName(response.data.name));
                         dispatch(loadUserStats({
                             wins: response.data.wins,
                             losses: response.data.losses

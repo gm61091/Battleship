@@ -18,7 +18,8 @@ router.post("/login", requireLogin, (req, res) => {
     res.json({
         token: generateToken(req.user),
         wins: req.user.wins,
-        losses: req.user.losses
+        losses: req.user.losses,
+        name: req.user.name
     })
 })
 
