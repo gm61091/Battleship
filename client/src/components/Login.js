@@ -65,7 +65,6 @@ const Login = () => {
                     Login
                 </Button>
                 <Link to="/register">Register here</Link>
-                <Link to="/">Home</Link>
                 {/* {message && <Component />} */}
             </Form>
         </>
