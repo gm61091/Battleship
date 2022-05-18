@@ -1,8 +1,11 @@
-.grid-square {
-    border: black solid 0.5px;
-    background-color: rgba(189, 189, 189, 0.553);
+.boat-square, .grid-square {
     width: 4.8vw;
     height: 7.6vh;
+    border: black solid 0.5px;
+}
+
+.grid-square {
+    background-color: rgba(189, 189, 189, 0.553);
     cursor: pointer;
 }
 
@@ -10,15 +13,18 @@
     background-color: rgba(253, 78, 78, 0.503);
 }
 
+.selected {
+    background-color: rgba(0, 0, 231, 0.503);
+}
+
 .ship {
     display: flex;
     flex-wrap: nowrap;
     margin: 2px;
     margin-left: 4px;
+    cursor: pointer;
 }
 
 .boat-square {
-    width: 4.8vw;
-    height: 7.6vh;
     background-color: gray;
 }
