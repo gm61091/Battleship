@@ -22,6 +22,7 @@
     flex-wrap: nowrap;
     margin: 2px;
     margin-left: 4px;
+    cursor: pointer;
 }
 
 .boat-square {
