@@ -6,10 +6,7 @@ const PORT = 3001;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use(require("./routes/login"))
-app.use(require("./routes/register"))
-app.use(require("./routes/protected"))
-app.use(require("./routes/index"))
+app.use(require("./routes"))
 
 db.sequelize.sync({ force: false })
 .then(() => {

@@ -1,0 +1,24 @@
+.grid-square {
+    border: black solid 0.5px;
+    background-color: rgba(189, 189, 189, 0.553);
+    width: 4.8vw;
+    height: 7.6vh;
+    cursor: pointer;
+}
+
+.highlighted {
+    background-color: rgba(253, 78, 78, 0.503);
+}
+
+.ship {
+    display: flex;
+    flex-wrap: nowrap;
+    margin: 2px;
+    margin-left: 4px;
+}
+
+.boat-square {
+    width: 4.8vw;
+    height: 7.6vh;
+    background-color: gray;
+}
