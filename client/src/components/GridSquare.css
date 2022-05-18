@@ -20,4 +20,10 @@
 .ship {
     display: flex;
     flex-wrap: nowrap;
+    margin: 2px;
+    margin-left: 4px;
+}
+
+.boat-square {
+    background-color: gray;
 }
