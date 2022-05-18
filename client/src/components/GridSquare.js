@@ -12,7 +12,7 @@ const GridSquare = ({ id, row, col }) => {
     const shipOrientation = useSelector(state => state.gameStart.shipOrientation);
     const shipLocations = useSelector(state => state.gameStart.shipLocations);
     const lastActiveSquare = useSelector(state => state.gameStart.lastActiveSquare);
-    const [css, setCss] = useState("");
+    const [highlighted, setHighlighted] = useState("");
 
     const handleHover = () => {
         dispatch(updateLastActiveSquare(id))
@@ -45,11 +45,11 @@ const GridSquare = ({ id, row, col }) => {
         for (const squareId of selectedSquares) {
             let squareHighlighted;
             if (squareId === id) {
-                setCss(" highlighted");
+                setHighlighted(" highlighted");
                 squareHighlighted = true;
                 break;
             }
-            if (!squareHighlighted) setCss("");
+            if (!squareHighlighted) setHighlighted("");
         }
     }, [selectedSquares])
 
@@ -58,7 +58,7 @@ const GridSquare = ({ id, row, col }) => {
     }, [shipOrientation])
 
     return (
-        <div className={`grid-square${css}`} onMouseEnter={handleHover}></div>
+        <div className={`grid-square${highlighted}`} onMouseEnter={handleHover}></div>
     )
 }
 
