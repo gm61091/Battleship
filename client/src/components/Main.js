@@ -4,6 +4,7 @@ import GridSquare from "./GridSquare";
 import Button from "react-bootstrap/Button";
 import modifyShipOrientation from "../actions/modifyShipOrientation";
 import { useSelector, useDispatch } from "react-redux";
+import Ship from "./Ship"
 
 const gridArray = new Array(10).fill((new Array(10).fill(0)));
 
@@ -11,6 +12,8 @@ const Main = () => {
     
     const dispatch = useDispatch();
     const shipOrientation = useSelector(state => state.gameStart.shipOrientation);
+
+    const shipLengths =  [5, 4, 3, 3, 2]
 
     return (
         <div className="background">
@@ -29,8 +32,24 @@ const Main = () => {
                     ))}
                 </div>
                 <div className="right-column mt-3">
-                    <div className="computer-board mx-3"></div>
-                    <div className="message-box mx-3"></div>
+                    <div className="computer-board mx-3">
+                        {shipLengths.map((element, index)=>(
+                            <Ship
+                                key={index} 
+                                shipLength={element}
+                            />
+                        )
+
+                        )}
+
+    
+                    </div>
+
+                    <div className="message-box mx-3">
+
+
+                    </div>
+
                 </div>
             </div>
             <div className="game-btns mt-3">

@@ -30,6 +30,13 @@
 .computer-board {
     height: 45vh;
     background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    
+
+    
 }
 
 .message-box {
