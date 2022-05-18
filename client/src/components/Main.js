@@ -2,8 +2,9 @@ import React from "react";
 import "./Main.css";
 import GridSquare from "./GridSquare";
 import Button from "react-bootstrap/Button";
-import modifyShipOrientation from "../actions/modifyShipOrientation";
 import { useSelector, useDispatch } from "react-redux";
+import modifyShipOrientation from "../actions/modifyShipOrientation";
+import resetGameBoard from "../actions/resetGameBoard";
 import Ship from "./Ship"
 
 const gridArray = new Array(10).fill((new Array(10).fill(0)));
@@ -12,8 +13,7 @@ const Main = () => {
     
     const dispatch = useDispatch();
     const shipOrientation = useSelector(state => state.gameStart.shipOrientation);
-
-    const shipLengths =  [5, 4, 3, 3, 2]
+    const shipLengths =  useSelector(state => state.gameStart.shipLengths);
 
     return (
         <div className="background">
@@ -55,6 +55,9 @@ const Main = () => {
             <div className="game-btns mt-3">
                 <Button variant="primary" onClick={() => dispatch(modifyShipOrientation())}>
                     {shipOrientation === "vertical" ? "Horizontal" : "Vertical"}
+                </Button>
+                <Button variant="primary mx-3" onClick={() => dispatch(resetGameBoard())}>
+                    Reset Board
                 </Button>
             </div>
         </div>

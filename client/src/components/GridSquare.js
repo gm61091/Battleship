@@ -3,6 +3,8 @@ import "./GridSquare.css";
 import { useSelector, useDispatch } from "react-redux";
 import modifySelectedSquares from "../actions/modifySelectedSquares";
 import updateLastActiveSquare from "../actions/updateLastActiveSquare";
+import updateShipLocations from "../actions/updateShipLocations";
+import deleteShipLength from "../actions/deleteShipLength";
 
 const GridSquare = ({ id, row, col }) => {
 
@@ -13,6 +15,7 @@ const GridSquare = ({ id, row, col }) => {
     const shipLocations = useSelector(state => state.gameStart.shipLocations);
     const lastActiveSquare = useSelector(state => state.gameStart.lastActiveSquare);
     const [highlighted, setHighlighted] = useState("");
+    const [selected, setSelected] = useState("");
 
     const handleHover = () => {
         dispatch(updateLastActiveSquare(id))
@@ -25,7 +28,7 @@ const GridSquare = ({ id, row, col }) => {
                 }
                 squareList.push(`${row}${col + count}`)
             }
-            if (!anotherShip) dispatch(modifySelectedSquares(squareList))
+            anotherShip ? dispatch(modifySelectedSquares([""])) : dispatch(modifySelectedSquares(squareList))
         } else if (shipOrientation === "vertical" && (row + shipLength - 1) <= 9) {
             let [anotherShip, squareList] = [false, []];
             for (let count = 0; count < shipLength; count++) {
@@ -35,10 +38,28 @@ const GridSquare = ({ id, row, col }) => {
                 }
                 squareList.push(`${row + count}${col}`)
             }
-            if (!anotherShip) dispatch(modifySelectedSquares(squareList))
+            anotherShip ? dispatch(modifySelectedSquares([""])) : dispatch(modifySelectedSquares(squareList))
         } else {
             dispatch(modifySelectedSquares([""]));
         }
+    }
+
+    const handleClick = () => {
+        if (highlighted) {
+            setHighlighted("");
+            const newShipLocations = {};
+            if (shipOrientation === "vertical") {
+                for (let count = 0; count < shipLength; count++) {
+                    newShipLocations[`${row + count}${col}`] = true
+                }
+            } else if (shipOrientation === "horizontal") {
+                for (let count = 0; count < shipLength; count++) {
+                    newShipLocations[`${row}${col + count}`] = true
+                }
+            }
+            dispatch(updateShipLocations(newShipLocations));
+            dispatch(deleteShipLength(shipLength));
+        } 
     }
 
     useEffect(() => {
@@ -54,11 +75,23 @@ const GridSquare = ({ id, row, col }) => {
     }, [selectedSquares])
 
     useEffect(() => {
+        for (const squareId in shipLocations) {
+            let squareSelected;
+            if (squareId === id) {
+                setSelected(" selected");
+                squareSelected = true;
+                break;
+            }
+            if (!squareSelected) setSelected("");
+        }
+    }, [shipLocations])
+
+    useEffect(() => {
         if (id === lastActiveSquare) handleHover();
     }, [shipOrientation])
 
     return (
-        <div className={`grid-square${highlighted}`} onMouseEnter={handleHover}></div>
+        <div className={`grid-square${highlighted}${selected}`} onMouseEnter={handleHover} onClick={handleClick}></div>
     )
 }
 
