@@ -5,12 +5,14 @@ const gamePlayReducer = (state, action) => {
     if (!state) {
         state = {
             gameStarted: false,
-            computerShipLocations: {}
+            computerShipLocations: {},
+            computerShipCoordinates: []
         }
     }
     switch (action.type) {
         case types.START_GAME:
             const [computerShipLocations, separatedShipLocations] = generateComputerShipLocations();
+            console.log(separatedShipLocations)
             return {
                 ...state,
                 computerShipLocations: computerShipLocations,
