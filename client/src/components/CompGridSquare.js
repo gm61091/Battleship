@@ -10,19 +10,16 @@ const CompGridSquare = ({ id }) => {
 
 
     const handleClick = () => {
-        if(id in computerShipLocations) {
-            setStatus("HIT")
-        }
-        else{  
-            setStatus("MISS")
+        if (id in computerShipLocations) {
+            setStatus("hit")
+        } else {   
+            setStatus("miss")
         }
     }
 
     return (
         <div className={`comp-square`} onClick={handleClick}>
-
-            { status ? (status === "HIT" ? "💥" : "●") : "" }
-
+            {status ? (status === "hit" ? "💥" : "●") : ""}
         </div>
     )
 }
