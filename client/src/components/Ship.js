@@ -14,7 +14,7 @@ const Ship = (props) => {
 
     return (
       <div className="ship" onClick={handleClick}>
-        {shipArray.map(() => <div className="boat-square"></div>)}
+        {shipArray.map((ele, index) => <div key={index} className="boat-square"></div>)}
       </div>
     )  
 }

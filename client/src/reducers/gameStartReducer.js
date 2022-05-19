@@ -7,7 +7,8 @@ const gameStartReducer = (state, action) => {
             selectedSquares: [],
             shipOrientation: "horizontal",
             shipLocations: {},
-            lastActiveSquare: ""
+            lastActiveSquare: "",
+            shipLengths: [5, 4, 3, 3, 2]
         }
     }
     switch (action.type) {
@@ -30,6 +31,36 @@ const gameStartReducer = (state, action) => {
             return {
                 ...state, 
                 lastActiveSquare: action.data
+            }
+        case types.UPDATE_SHIP_LOCATIONS:
+            return {
+                ...state,
+                shipLocations: {
+                    ...state.shipLocations,
+                    ...action.data
+                }
+            }
+        case types.DELETE_SHIP_LENGTH:
+            const newShipLengths = [];
+            let matchingLength = false;
+            for (const length of state.shipLengths) {
+                if (length === action.data && !matchingLength) {
+                    matchingLength = true;
+                } else newShipLengths.push(length);
+            }
+            return {
+                ...state,
+                shipLengths: newShipLengths,
+                shipLength: newShipLengths[0] || 0
+            }
+        case types.RESET_GAME_BOARD:
+            return {
+                shipLength: 5,
+                selectedSquares: [],
+                shipOrientation: "horizontal",
+                shipLocations: {},
+                lastActiveSquare: "",
+                shipLengths: [5, 4, 3, 3, 2]
             }
         default: 
             return state;

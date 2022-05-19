@@ -29,14 +29,17 @@
 
 .computer-board {
     height: 45vh;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.ship-yard {
+    height: 45vh;
     background-color: black;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: left;
-    
-
-    
+    align-items: left;    
 }
 
 .message-box {
