@@ -76,15 +76,7 @@ const GridSquare = ({ id, row, col }) => {
     }, [selectedSquares]) 
 
     useEffect(() => {
-        for (const squareId in shipLocations) {
-            let squareSelected;
-            if (squareId === id) {
-                setSelected(" selected");
-                squareSelected = true;
-                break;
-            }
-            if (!squareSelected) setSelected("");
-        }
+        id in shipLocations ? setSelected(" selected") : setSelected("");
     }, [shipLocations])
 
     useEffect(() => {

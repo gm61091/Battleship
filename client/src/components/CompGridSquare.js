@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./GridSquare.css"
 
 const CompGridSquare = ({ id }) => {
     return (
-        <div className="comp-square"></div>
+        <div className={`comp-square`}></div>
     )
 }
 

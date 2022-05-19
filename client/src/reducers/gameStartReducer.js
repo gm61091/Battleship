@@ -58,7 +58,7 @@ const gameStartReducer = (state, action) => {
                 shipLength: 5,
                 selectedSquares: [],
                 shipOrientation: "horizontal",
-                shipLocations: {"": true},
+                shipLocations: {},
                 lastActiveSquare: "",
                 shipLengths: [5, 4, 3, 3, 2]
             }

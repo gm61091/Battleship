@@ -4,6 +4,13 @@
     border: black solid 0.5px;
 }
 
+.comp-square {
+    border: black solid 0.25px;
+    height: 4.5vh;
+    width: 3.55vw;
+    background-color: rgba(189, 189, 189, 0.553);
+}
+
 .grid-square {
     background-color: rgba(189, 189, 189, 0.553);
     cursor: pointer;
@@ -27,11 +34,4 @@
 .boat-square {
     background-color: gray;
     cursor: pointer;
-}
-
-.comp-square {
-    border: black solid 0.25px;
-    height: 4.5vh;
-    width: 3.55vw;
-    background-color: rgba(189, 189, 189, 0.553);
 }
