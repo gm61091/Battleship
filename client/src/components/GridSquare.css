@@ -9,6 +9,10 @@
     height: 4.5vh;
     width: 3.55vw;
     background-color: rgba(189, 189, 189, 0.553);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
 }
 
 .grid-square {
