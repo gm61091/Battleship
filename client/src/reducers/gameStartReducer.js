@@ -7,6 +7,7 @@ const gameStartReducer = (state, action) => {
             selectedSquares: [],
             shipOrientation: "horizontal",
             shipLocations: {},
+            shipCoordinates: [],
             lastActiveSquare: "",
             shipLengths: [5, 4, 3, 3, 2]
         }
@@ -40,6 +41,11 @@ const gameStartReducer = (state, action) => {
                     ...action.data
                 }
             }
+        case types.UPDATE_SHIP_COORDINATES:
+            return {
+                ...state,
+                shipCoordinates: state.shipCoordinates.concat([action.data])
+            }
         case types.DELETE_SHIP_LENGTH:
             const newShipLengths = [];
             let matchingLength = false;
@@ -59,6 +65,7 @@ const gameStartReducer = (state, action) => {
                 selectedSquares: [],
                 shipOrientation: "horizontal",
                 shipLocations: {},
+                shipCoordinates: [],
                 lastActiveSquare: "",
                 shipLengths: [5, 4, 3, 3, 2]
             }

@@ -5,6 +5,7 @@ import modifySelectedSquares from "../actions/modifySelectedSquares";
 import updateLastActiveSquare from "../actions/updateLastActiveSquare";
 import updateShipLocations from "../actions/updateShipLocations";
 import deleteShipLength from "../actions/deleteShipLength";
+import updateShipCoordinates from "../actions/updateShipCoordinates";
 
 const GridSquare = ({ id, row, col }) => {
 
@@ -49,16 +50,20 @@ const GridSquare = ({ id, row, col }) => {
         if (highlighted) {
             setHighlighted("");
             const newShipLocations = {};
+            const newShipCoordinates = [];
             if (shipOrientation === "vertical") {
                 for (let count = 0; count < shipLength; count++) {
                     newShipLocations[`${row + count}${col}`] = true
+                    newShipCoordinates.push(`${row + count}${col}`)
                 }
             } else if (shipOrientation === "horizontal") {
                 for (let count = 0; count < shipLength; count++) {
                     newShipLocations[`${row}${col + count}`] = true
+                    newShipCoordinates.push(`${row}${col + count}`)
                 }
             }
             dispatch(updateShipLocations(newShipLocations));
+            dispatch(updateShipCoordinates(newShipCoordinates));
             dispatch(deleteShipLength(shipLength));
         } 
     }
