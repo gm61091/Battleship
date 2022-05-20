@@ -6,7 +6,8 @@ const gamePlayReducer = (state, action) => {
         state = {
             gameStarted: false,
             computerShipLocations: {},
-            computerShipCoordinates: []
+            computerShipCoordinates: [],
+            userMiss: ""
         }
     }
     switch (action.type) {
@@ -18,6 +19,29 @@ const gamePlayReducer = (state, action) => {
                 computerShipLocations: computerShipLocations,
                 computerShipCoordinates: separatedShipLocations,
                 gameStarted: true
+            }
+        case types.DELETE_FROM_SHIP_COORDINATES:
+            const newShipCoordinates = [];
+            for (const shipList of state.computerShipCoordinates) {
+                if (shipList.length === 0) continue
+                newShipCoordinates.push(shipList.filter(gridIdx => gridIdx !== action.data))
+            }
+            console.log(newShipCoordinates);
+            return {
+                ...state,
+                computerShipCoordinates: newShipCoordinates 
+            }
+        case types.FLIP_USER_MISS:
+            return {
+                ...state,
+                userMiss: action.data
+            }
+        case types.RESET_GAME:
+            return {
+                gameStarted: false,
+                computerShipLocations: {},
+                computerShipCoordinates: [],
+                userMiss: ""
             }
         default: 
             return state;
