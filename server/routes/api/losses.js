@@ -11,8 +11,8 @@ router.put('/:email/:updatedLosses', async (req, res) => {
         }
     })
     res.status(200).end()
-  } catch { 
-    console.log('error in the catch');
+  } catch (error) { 
+    console.log(error);
   }
 })
 

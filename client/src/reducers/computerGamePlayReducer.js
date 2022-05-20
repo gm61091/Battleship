@@ -10,18 +10,20 @@ const computerGamePlayReducer = (state, action) => {
             gridIndices: generateGridIndices(),
             coordinatesPicked: {},
             shipIndex: "",
+            lastHit: "",
             targetShipOrientation: "",
-            shipCoordinates: []
+            shipCoordinates: [],
+            computerMessage: ""
         }
     }
     switch (action.type) {
         case types.NEXT_COMPUTER_MOVE:
             let [selectedGridIndex, modifyShipOrientation, modifyShipIndex] = [null, null, null];
             if (state.shipIndex) {
-                selectedGridIndex = determineNextIndex(state.shipIndex, state.targetShipOrientation, state.coordinatesPicked);
+                selectedGridIndex = determineNextIndex(state.shipIndex, state.lastHit, state.targetShipOrientation, state.coordinatesPicked);
                 if (!selectedGridIndex) {
                     modifyShipOrientation = true;
-                    selectedGridIndex = determineNextIndex(state.shipIndex, "", state.coordinatesPicked);
+                    selectedGridIndex = determineNextIndex(state.shipIndex, "", "", state.coordinatesPicked);
                     if (!selectedGridIndex) {
                         modifyShipIndex = true;
                         selectedGridIndex = selectRandomIndex(state.gridIndices);
@@ -39,15 +41,22 @@ const computerGamePlayReducer = (state, action) => {
                 gridIndices: state.gridIndices.filter(index => index !== selectedGridIndex)
             }
         case types.UPDATE_SHIP_INDEX:
-            let [modifyShipIdx, shipOrientation] = [false, null];
-            if (state.shipIndex) {
+            let [modifyShipIdx, shipOrientation, lastHit] = [false, "", ""];
+            if (state.shipIndex && !state.targetShipOrientation) {
                 shipOrientation = determineShipOrientation(state.shipIndex, action.data);
-                if (shipOrientation === "error") console.log("error with determine ship orientation in computer game play reducer");
-            } else modifyShipIdx = true;
+                lastHit = action.data;
+            } else if (state.shipIndex && state.targetShipOrientation) lastHit = action.data;
+            else modifyShipIdx = true;
             return {
                 ...state,
                 shipIndex: modifyShipIdx ? action.data : state.shipIndex,
-                targetShipOrientation: shipOrientation || state.targetShipOrientation 
+                targetShipOrientation: shipOrientation || state.targetShipOrientation,
+                lastHit: lastHit
+            }
+        case types.UPDATE_LAST_HIT:
+            return {
+                ...state,
+                lastHit: ""
             }
         case types.UPDATE_SHIP_COORDINATES:
             return {
@@ -57,20 +66,23 @@ const computerGamePlayReducer = (state, action) => {
         case types.DELETE_USER_SHIP_COORDINATE:
             let [newShipCoordinates, resetTargetShip] = [[], false];
             for (const shipList of state.shipCoordinates) {
-                if (shipList.length === 0) {
-                    resetTargetShip = true;
-                    continue
-                }
-                newShipCoordinates.push(shipList.filter(gridIdx => gridIdx !== action.data))
+                const newShipList = shipList.filter(gridIdx => gridIdx !== action.data)
+                if (newShipList.length === 0) resetTargetShip = true;
+                else newShipCoordinates.push(newShipList);
             }
-            console.log(newShipCoordinates, resetTargetShip);
             return {
                 ...state,
                 shipCoordinates: newShipCoordinates,
                 shipIndex: resetTargetShip ? "" : state.shipIndex,
-                targetShipOrientation: resetTargetShip ? "" : state.targetShipOrientation
+                targetShipOrientation: resetTargetShip ? "" : state.targetShipOrientation,
+                lastHit: resetTargetShip ? "" : state.lastHit
             }
-        default: 
+        case types.SET_COMPUTER_MESSAGE:
+            return {
+                ...state,
+                computerMessage: action.data
+            }
+        default:
             return state;
     }
 }

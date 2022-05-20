@@ -7,14 +7,15 @@ import updateShipLocations from "../actions/updateShipLocations";
 import deleteShipLength from "../actions/deleteShipLength";
 import updateShipCoordinates from "../actions/updateShipCoordinates";
 import updateShipIndex from "../actions/updateShipIndex"
+import deleteUserShipCoordinate from "../actions/deleteUserShipCoordinate"; 
+import setMessage from "../actions/setMessage";
+import updateLastHit from "../actions/updateLastHit";
 
 const GridSquare = ({ id, row, col }) => {
 
     const dispatch = useDispatch();
     const { shipLength, selectedSquares, shipOrientation, shipLocations, lastActiveSquare } = useSelector(state => state.gameStart);
-    const gameStarted = useSelector(state => state.gamePlay.gameStarted);
-    const coordinatesPicked = useSelector(state => state.computerGamePlay.coordinatesPicked)
-    // const shipCoordinates = useSelector(state => state.gameStart.shipCoordinates);
+    const { gameStarted, coordinatesPicked } = useSelector(state => state.gamePlay);
     const [highlighted, setHighlighted] = useState("");
     const [selected, setSelected] = useState("");
     const [pickedPreviously, setPickedPreviously] = useState(false);
@@ -88,10 +89,14 @@ const GridSquare = ({ id, row, col }) => {
         if (!pickedPreviously && id in coordinatesPicked) {
             setPickedPreviously(true);
             if (selected) {
+                dispatch(setMessage("Computer hit your ship!"))
                 dispatch(updateShipIndex(id));
                 dispatch(deleteUserShipCoordinate(id));
-            }
-        }
+            } else {
+                dispatch(setMessage("Computer missed!"))
+                dispatch(updateLastHit());
+            } 
+        } 
     }, [coordinatesPicked])
 
     useEffect(() => {

@@ -1,7 +1,8 @@
 import selectRandomIndex from "./selectRandomIndex"
 
-const determineNextIndex = (gridIdx, coordinatesPicked, shipOrientation) => {
+const determineNextIndex = (shipIdx, lastHit, shipOrientation, coordinatesPicked) => {
     const possibilities = [];
+    const gridIdx = lastHit || shipIdx;
     if (!shipOrientation) {
         if (gridIdx[1] < 9 && !(`${gridIdx[0]}${parseInt(gridIdx[1]) + 1}` in coordinatesPicked)) {
             possibilities.push(`${gridIdx[0]}${parseInt(gridIdx[1]) + 1}`)
@@ -32,7 +33,8 @@ const determineNextIndex = (gridIdx, coordinatesPicked, shipOrientation) => {
             }
         }
     }
-    if (possibilities.length === 0) return "";
+    if (possibilities.length === 0 && lastHit) return determineNextIndex(shipIdx, "", shipOrientation, coordinatesPicked);
+    else if (possibilities.length === 0 && shipOrientation) return "";
     else return selectRandomIndex(possibilities);
 }
 

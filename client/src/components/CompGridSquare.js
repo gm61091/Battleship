@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import deleteFromShipCoordinates from "../actions/deleteFromShipCoordinates";
-import flipUserMiss from "../actions/flipUserMiss";
+import nextComputerMove from "../actions/nextComputerMove";
+import setMessage from "../actions/setMessage";
 import "./GridSquare.css"
 
 const CompGridSquare = ({ id }) => {
@@ -9,18 +10,21 @@ const CompGridSquare = ({ id }) => {
     const dispatch = useDispatch();
 
     const [status, setStatus] = useState("")
-    const computerShipLocations = useSelector(state => state.gamePlay.computerShipLocations)
+    const { computerShipLocations, gameOver } = useSelector(state => state.gamePlay)
 
     const handleClick = () => {
-        if (!status) {
+        if (!status && !gameOver) {
             if (id in computerShipLocations) {
                 setStatus("hit")
-                dispatch(flipUserMiss(false));
+                dispatch(setMessage("Ship hit!"));
                 dispatch(deleteFromShipCoordinates(id));
             } else {   
                 setStatus("miss");
-                dispatch(flipUserMiss(true));
+                dispatch(setMessage("Torpedo missed!"));
             }
+            setTimeout(() => {
+                dispatch(nextComputerMove());
+            }, 0.5 * 1000)
         }
     }
 
