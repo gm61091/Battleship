@@ -1,16 +1,16 @@
 import types from "./index";
 
-export const loadUserStats = stats => ({
-    type: types.LOAD_USER_STATS,
-    data: stats
+export const updateWins = wins => ({
+    type: types.UPDATE_USER_WINS,
+    data: wins
 })
 
-export const addEmail = email => ({
-    type: types.ADD_EMAIL,
-    data: email 
+export const updateLosses = losses => ({
+    type: types.UPDATE_USER_LOSSES,
+    data: losses
 })
 
-export const addName = name => ({
-    type: types.ADD_NAME,
-    data: name
+export const loadUserInfo = user => ({
+    type: types.LOAD_USER_INFO,
+    data: user  
 })

@@ -10,21 +10,22 @@ const userReducer = (state, action) => {
         }
     }
     switch (action.type) {
-        case types.ADD_EMAIL:
+        case types.LOAD_USER_INFO:
             return {
-                ...state,
-                email: action.data
-            }
-        case types.LOAD_USER_STATS:
-            return {
-                ...state,
+                email: action.data.email,
+                name: action.data.name,
                 wins: action.data.wins,
                 losses: action.data.losses 
             }
-        case types.ADD_NAME:
+        case types.UPDATE_USER_WINS:
             return {
                 ...state,
-                name: action.data.name
+                wins: action.data
+            }
+        case types.UPDATE_USER_LOSSES:
+            return {
+                ...state,
+                losses: action.data
             }
         default: 
             return state;

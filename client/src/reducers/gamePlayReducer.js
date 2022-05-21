@@ -105,11 +105,6 @@ const gamePlayReducer = (state, action) => {
                 lastHit: resetTargetShip ? "" : state.lastHit,
                 gameOver: newUserShipCoordinates.length === 0
             }
-        case types.SET_COMPUTER_MESSAGE:
-            return {
-                ...state,
-                computerMessage: action.data
-            }
         case types.RESET_GAME:
             return {
                 gameStarted: false,
