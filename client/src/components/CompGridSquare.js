@@ -20,9 +20,10 @@ const CompGridSquare = ({ id }) => {
                 setStatus("miss");
                 dispatch(setMessage("Torpedo missed!"));
             }
-            setTimeout(() => {
-                dispatch(nextComputerMove());
-            }, 0.5 * 1000)
+            // setTimeout(() => {
+            //     dispatch(nextComputerMove());
+            // }, 0.25 * 1000)
+            dispatch(nextComputerMove());
         }
     }
 

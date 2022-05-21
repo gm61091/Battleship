@@ -40,15 +40,15 @@ const Main = () => {
     // }, [computerShipCoordinates, shipCoordinates])
 
     useEffect(() => {
-        console.log(shipCoordinates)
+        console.log(wins, losses)
         if (gameOver && shipCoordinates.length) {
             setMessage("You win!");
-            updateWins(wins + 1);
             updateUserWinsInDatabase(email, wins + 1);
+            dispatch(updateWins(wins + 1));
         } else if (gameOver) {
             setMessage("You lose!");
-            updateLosses(losses + 1);
             updateUserLossesInDatabase(email, losses + 1);
+            dispatch(updateLosses(losses + 1));
         }
     }, [gameOver])
 
