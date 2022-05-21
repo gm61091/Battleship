@@ -3,15 +3,12 @@ import "./Main.css";
 import GridSquare from "./GridSquare";
 import Button from "react-bootstrap/Button";
 import { useSelector, useDispatch } from "react-redux";
-import modifyShipOrientation from "../actions/modifyShipOrientation";
-import resetGameBoard from "../actions/resetGameBoard";
-import startGame from "../actions/startGame";
-import resetGame from "../actions/resetGame";
-import setMessage from "../actions/setMessage";
 import Ship from "./Ship"
 import CompGridSquare from "./CompGridSquare";
 import { updateUserWinsInDatabase, updateUserLossesInDatabase } from "../utils/updateUserRecord";
-import loadUserStats from "../actions/loadUserStats";
+import { updateWins, updateLosses } from "../actions/userActions";
+import { modifyShipOrientation, resetGameBoard, resetGame } from "../actions/gameStartActions";
+import { startGame, setMessage } from "../actions/gamePlayActions";
 
 const gridArray = new Array(10).fill((new Array(10).fill(0)));
 
@@ -46,9 +43,11 @@ const Main = () => {
         console.log(shipCoordinates)
         if (gameOver && shipCoordinates.length) {
             setMessage("You win!");
+            updateWins(wins + 1);
             updateUserWinsInDatabase(email, wins + 1);
         } else if (gameOver) {
             setMessage("You lose!");
+            updateLosses(losses + 1);
             updateUserLossesInDatabase(email, losses + 1);
         }
     }, [gameOver])

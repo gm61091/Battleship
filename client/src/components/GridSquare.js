@@ -1,15 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./GridSquare.css";
 import { useSelector, useDispatch } from "react-redux";
-import modifySelectedSquares from "../actions/modifySelectedSquares";
-import updateLastActiveSquare from "../actions/updateLastActiveSquare";
-import updateShipLocations from "../actions/updateShipLocations";
-import deleteShipLength from "../actions/deleteShipLength";
-import updateShipCoordinates from "../actions/updateShipCoordinates";
-import updateShipIndex from "../actions/updateShipIndex"
-import deleteUserShipCoordinate from "../actions/deleteUserShipCoordinate"; 
-import setMessage from "../actions/setMessage";
-import updateLastHit from "../actions/updateLastHit";
+import { modifySelectedSquares, updateLastActiveSquare, updateShipLocations, deleteShipLength } from "../actions/gameStartActions";
+import { updateShipCoordinates, updateShipIndex, deleteUserShipCoordinate, setMessage, updateLastHit } from "../actions/gamePlayActions";
 
 const GridSquare = ({ id, row, col }) => {
 

@@ -4,10 +4,8 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import addToken from "../actions/addToken";
-import addEmail from "../actions/addEmail";
-import loadUserStats from "../actions/loadUserStats";
-import addName from "../actions/addName"
+import { addToken } from "../../actions/authActions";
+import { loadUserInfo } from "../../actions/userActions";
 
 const Login = () => {
 
@@ -26,12 +24,7 @@ const Login = () => {
                     const response = await axios.post("/login", { email, password });
                     if (response.data) {
                         dispatch(addToken(response.data.token));
-                        dispatch(addEmail(email));
-                        dispatch(addName(response.data.name));
-                        dispatch(loadUserStats({
-                            wins: response.data.wins,
-                            losses: response.data.losses
-                        }))
+                        dispatch(loadUserInfo(response.data))
                         localStorage.setItem("token", response.data.token);
                         navigate("/");
                     } else {
