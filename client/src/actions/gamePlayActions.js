@@ -9,6 +9,10 @@ export const deleteFromShipCoordinates = coordinate => ({
     data: coordinate 
 })
 
+export const setComputerTurn = () => ({
+    type: types.SET_COMPUTER_TURN
+})
+
 export const nextComputerMove = () => ({
     type: types.NEXT_COMPUTER_MOVE
 })
@@ -40,10 +44,12 @@ export const setMessage = message => ({
     type: types.SET_MESSAGE,
     data: message
 })
+
 export const userMessage = userMessage => ({
     type: types.USER_MESSAGE,
     data: userMessage
 })
+
 export const computerMessage = computerMessage => ({
     type: types.COMPUTER_MESSAGE,
     data: computerMessage

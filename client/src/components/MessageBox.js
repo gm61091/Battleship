@@ -1,27 +1,11 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
-import { updateUserLossesInDatabase, updateUserWinsInDatabase } from "../utils/updateUserRecord";
-import { updateWins, updateLosses } from "../actions/userActions";
-import { setMessage } from "../actions/gamePlayActions";
 import GameMessage from "./GameMessage"
 
 const MessageBox = () => {
 
-    // const dispatch = useDispatch();
     const { gameStarted, gameOver } = useSelector(state => state.gamePlay);
-
-    // useEffect(() => {
-    //     if (gameOver && shipCoordinates.length) {
-    //         setMessage("You win!");
-    //         updateUserWinsInDatabase(email, wins + 1);
-    //         dispatch(updateWins(wins + 1));
-    //     } else if (gameOver) {
-    //         setMessage("You lose!");
-    //         updateUserLossesInDatabase(email, losses + 1);
-    //         dispatch(updateLosses(losses + 1));
-    //     }
-    // }, [gameOver])
 
     return (
         <div className="message-box mx-3">

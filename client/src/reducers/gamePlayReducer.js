@@ -20,7 +20,8 @@ const gamePlayReducer = (state, action) => {
             shipCoordinates: [], 
             gameOver: false,
             userMessage: "",
-            computerMessage: ""
+            computerMessage: "",
+            computerTurn: false
         }
     }
     switch (action.type) {
@@ -46,6 +47,11 @@ const gamePlayReducer = (state, action) => {
                 computerShipCoordinates: newShipCoordinates,
                 gameOver: newShipCoordinates.length === 0
             }
+        case types.SET_COMPUTER_TURN:
+            return {
+                ...state,
+                computerTurn: true
+            }
         case types.NEXT_COMPUTER_MOVE:
             let [selectedGridIndex, modifyShipOrientation, modifyShipIndex] = [null, null, null];
             if (state.shipIndex) {
@@ -67,7 +73,8 @@ const gamePlayReducer = (state, action) => {
                     ...state.coordinatesPicked,
                     [selectedGridIndex]: true
                 },
-                gridIndices: state.gridIndices.filter(index => index !== selectedGridIndex)
+                gridIndices: state.gridIndices.filter(index => index !== selectedGridIndex),
+                computerTurn: false
             }
         case types.UPDATE_SHIP_INDEX:
             let [modifyShipIdx, shipOrientation, lastHit] = [false, "", ""];
