@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteFromShipCoordinates, nextComputerMove, setMessage } from "../actions/gamePlayActions";
+import { deleteFromShipCoordinates, nextComputerMove, userMessage } from "../actions/gamePlayActions";
 import "./GridSquare.css"
+import convertSquareId from "../utils/convertSquareId"
 
 const CompGridSquare = ({ id }) => {
 
@@ -14,11 +15,11 @@ const CompGridSquare = ({ id }) => {
         if (!status && !gameOver) {
             if (id in computerShipLocations) {
                 setStatus("hit")
-                dispatch(setMessage("Ship hit!"));
+                dispatch(userMessage(`${convertSquareId(id)} - DIRECT HIT!`))
                 dispatch(deleteFromShipCoordinates(id));
             } else {   
                 setStatus("miss");
-                dispatch(setMessage("Torpedo missed!"));
+                dispatch(userMessage(`${convertSquareId(id)} - TORPEDO MISSED!`));
             }
             // setTimeout(() => {
             //     dispatch(nextComputerMove());
