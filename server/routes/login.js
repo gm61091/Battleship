@@ -19,7 +19,8 @@ router.post("/login", requireLogin, (req, res) => {
         token: generateToken(req.user),
         wins: req.user.wins,
         losses: req.user.losses,
-        name: req.user.name
+        name: req.user.name,
+        savedGame: req.user.savedGame
     })
 })
 

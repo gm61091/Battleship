@@ -6,12 +6,13 @@ import "./MessageBox.css"
 
 const MessageBox = () => {
 
-    const { gameStarted, gameOver, message } = useSelector(state => state.gamePlay);
+    const { gameStarted, gameOver, message, gameSaved } = useSelector(state => state.gamePlay);
 
     return (
         <div className={`message-box mx-3 px-2${(!gameOver && gameStarted) ? " game-message" : ""}`}>
-            {(!gameStarted || gameOver) && message}
-            {(!gameOver && gameStarted) && <GameMessage />}
+            {(!gameStarted || gameOver) && !gameSaved && message}
+            {!gameOver && gameStarted && <GameMessage />}
+            {gameSaved && "Game saved successfully!"}
         </div>
     )
 }

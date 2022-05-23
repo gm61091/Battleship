@@ -4,6 +4,11 @@ export const startGame = () => ({
     type: types.START_GAME
 })
 
+export const loadGame = savedGame => ({
+    type: types.LOAD_GAME,
+    data: savedGame
+})
+
 export const deleteFromShipCoordinates = coordinate => ({
     type: types.DELETE_FROM_SHIP_COORDINATES,
     data: coordinate 
@@ -58,4 +63,8 @@ export const computerMessage = computerMessage => ({
 export const addToSunkShips = id => ({
     type: types.ADD_TO_SUNK_SHIPS,
     data: id
+})
+
+export const setGameSaved = () => ({
+    type: types.SET_GAME_SAVED
 })

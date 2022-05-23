@@ -23,13 +23,13 @@ const gamePlayReducer = (state, action) => {
             computerMessage: "",
             computerTurn: false,
             sunkShips: {},
-            computerStartingCoordinates: []
+            computerStartingCoordinates: [],
+            gameSaved: false
         }
     }
     switch (action.type) {
         case types.START_GAME:
             const [computerShipLocations, separatedShipLocations] = generateComputerShipLocations();
-            console.log(separatedShipLocations)
             return {
                 ...state,
                 userMessage: "Click grid square on right to fire torpedo",
@@ -37,6 +37,10 @@ const gamePlayReducer = (state, action) => {
                 computerShipCoordinates: separatedShipLocations,
                 computerStartingCoordinates: separatedShipLocations,
                 gameStarted: true
+            }
+        case types.LOAD_GAME:
+            return {
+                ...action.data
             }
         case types.DELETE_FROM_SHIP_COORDINATES:
             const newShipCoordinates = [];
@@ -130,7 +134,8 @@ const gamePlayReducer = (state, action) => {
                 shipCoordinates: [],
                 gameOver: false,
                 userMessage: "",
-                computerMessage: ""
+                computerMessage: "",
+                gameSaved: false
             }
         case types.SET_MESSAGE:
             return {
@@ -165,6 +170,11 @@ const gamePlayReducer = (state, action) => {
                     ...sunkShipCoordinates
                 }
             }
+        case types.SET_GAME_SAVED:
+            return {
+                ...state,
+                gameSaved: true
+            } 
         default: 
             return state;
             
