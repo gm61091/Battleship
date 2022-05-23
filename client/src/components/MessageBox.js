@@ -5,7 +5,7 @@ import GameMessage from "./GameMessage"
 
 const MessageBox = () => {
 
-    const { gameStarted, gameOver } = useSelector(state => state.gamePlay);
+    const { gameStarted, gameOver, message } = useSelector(state => state.gamePlay);
 
     return (
         <div className="message-box mx-3">

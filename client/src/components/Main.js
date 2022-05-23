@@ -16,6 +16,7 @@ const Main = () => {
 
     const dispatch = useDispatch();
     const { gameOver, shipCoordinates } = useSelector(state => state.gamePlay);
+    const { wins, losses, email } = useSelector(state => state.user);
 
     useEffect(() => {
         if (gameOver && shipCoordinates.length) {

@@ -120,7 +120,7 @@ const gamePlayReducer = (state, action) => {
                 gameStarted: false,
                 computerShipLocations: {},
                 computerShipCoordinates: [],
-                message: "",
+                message: "Position your ships on the grid!",
                 gridIndices: generateGridIndices(),
                 coordinatesPicked: {},
                 shipIndex: "",
