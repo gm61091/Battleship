@@ -8,7 +8,7 @@ const rootReducer = combineReducers({
     auth: authReducer,
     user: userReducer,
     gameStart: gameStartReducer,
-    gamePlay: gamePlayReducer 
+    gamePlay: gamePlayReducer
 })
 
 export default rootReducer;

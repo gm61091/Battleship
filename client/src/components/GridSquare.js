@@ -1,22 +1,17 @@
 import React, { useState, useEffect } from "react";
 import "./GridSquare.css";
 import { useSelector, useDispatch } from "react-redux";
-import modifySelectedSquares from "../actions/modifySelectedSquares";
-import updateLastActiveSquare from "../actions/updateLastActiveSquare";
-import updateShipLocations from "../actions/updateShipLocations";
-import deleteShipLength from "../actions/deleteShipLength";
+import { modifySelectedSquares, updateLastActiveSquare, updateShipLocations, deleteShipLength } from "../actions/gameStartActions";
+import { updateShipCoordinates, updateShipIndex, deleteUserShipCoordinate, setMessage, updateLastHit } from "../actions/gamePlayActions";
 
 const GridSquare = ({ id, row, col }) => {
 
     const dispatch = useDispatch();
-    const shipLength = useSelector(state => state.gameStart.shipLength);
-    const selectedSquares = useSelector(state => state.gameStart.selectedSquares);
-    const shipOrientation = useSelector(state => state.gameStart.shipOrientation);
-    const shipLocations = useSelector(state => state.gameStart.shipLocations);
-    const lastActiveSquare = useSelector(state => state.gameStart.lastActiveSquare);
-    const gameStarted = useSelector(state => state.gamePlay.gameStarted);
+    const { shipLength, selectedSquares, shipOrientation, shipLocations, lastActiveSquare } = useSelector(state => state.gameStart);
+    const { gameStarted, coordinatesPicked } = useSelector(state => state.gamePlay);
     const [highlighted, setHighlighted] = useState("");
     const [selected, setSelected] = useState("");
+    const [pickedPreviously, setPickedPreviously] = useState(false);
 
     const handleHover = () => {
         dispatch(updateLastActiveSquare(id))
@@ -49,16 +44,20 @@ const GridSquare = ({ id, row, col }) => {
         if (highlighted) {
             setHighlighted("");
             const newShipLocations = {};
+            const newShipCoordinates = [];
             if (shipOrientation === "vertical") {
                 for (let count = 0; count < shipLength; count++) {
                     newShipLocations[`${row + count}${col}`] = true
+                    newShipCoordinates.push(`${row + count}${col}`)
                 }
             } else if (shipOrientation === "horizontal") {
                 for (let count = 0; count < shipLength; count++) {
                     newShipLocations[`${row}${col + count}`] = true
+                    newShipCoordinates.push(`${row}${col + count}`)
                 }
             }
             dispatch(updateShipLocations(newShipLocations));
+            dispatch(updateShipCoordinates(newShipCoordinates));
             dispatch(deleteShipLength(shipLength));
         } 
     }
@@ -80,6 +79,20 @@ const GridSquare = ({ id, row, col }) => {
     }, [shipLocations])
 
     useEffect(() => {
+        if (!pickedPreviously && id in coordinatesPicked) {
+            setPickedPreviously(true);
+            if (selected) {
+                dispatch(setMessage("Computer hit your ship!"))
+                dispatch(updateShipIndex(id));
+                dispatch(deleteUserShipCoordinate(id));
+            } else {
+                dispatch(setMessage("Computer missed!"))
+                dispatch(updateLastHit());
+            } 
+        } 
+    }, [coordinatesPicked])
+
+    useEffect(() => {
         if (id === lastActiveSquare) handleHover();
     }, [shipOrientation])
 
@@ -90,6 +103,7 @@ const GridSquare = ({ id, row, col }) => {
             onClick={handleClick}
             style={gameStarted ? { cursor: "default" } : { cursor: "pointer" }}
         >
+            {(gameStarted && id in coordinatesPicked) ? (selected ? "💥" : "●") : ""}
         </div>
     )
 }

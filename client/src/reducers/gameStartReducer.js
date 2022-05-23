@@ -54,11 +54,13 @@ const gameStartReducer = (state, action) => {
                 shipLength: newShipLengths[0] || 0
             }
         case types.RESET_GAME_BOARD:
+        case types.RESET_GAME:
             return {
                 shipLength: 5,
                 selectedSquares: [],
                 shipOrientation: "horizontal",
                 shipLocations: {},
+                shipCoordinates: [],
                 lastActiveSquare: "",
                 shipLengths: [5, 4, 3, 3, 2]
             }
