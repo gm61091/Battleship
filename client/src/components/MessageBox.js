@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { updateUserLossesInDatabase, updateUserWinsInDatabase } from "../utils/updateUserRecord";
 import { updateWins, updateLosses } from "../actions/userActions";
 import { setMessage } from "../actions/gamePlayActions";
+import GameMessage from "./GameMessage"
 
 const MessageBox = () => {
 
@@ -24,9 +25,11 @@ const MessageBox = () => {
 
     return (
         <div className="message-box mx-3">
-            {gameStarted && message ? message : ""}
+            {(!gameStarted || gameOver) && message}
+            {(!gameOver && gameStarted) && <GameMessage />}
         </div>
     )
 }
+
 
 export default MessageBox;

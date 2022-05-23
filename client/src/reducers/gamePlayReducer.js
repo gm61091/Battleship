@@ -11,14 +11,16 @@ const gamePlayReducer = (state, action) => {
             gameStarted: false,
             computerShipLocations: {},
             computerShipCoordinates: [],
-            message: "",
+            message: "Position your ships on the grid!",
             gridIndices: generateGridIndices(),
             coordinatesPicked: {},
             shipIndex: "",
             lastHit: "",
             targetShipOrientation: "",
             shipCoordinates: [], 
-            gameOver: false
+            gameOver: false,
+            userMessage: "",
+            computerMessage: ""
         }
     }
     switch (action.type) {
@@ -27,6 +29,7 @@ const gamePlayReducer = (state, action) => {
             console.log(separatedShipLocations)
             return {
                 ...state,
+                userMessage: "Click grid square on right to fire torpedo",
                 computerShipLocations: computerShipLocations,
                 computerShipCoordinates: separatedShipLocations,
                 gameStarted: true
@@ -117,15 +120,29 @@ const gamePlayReducer = (state, action) => {
                 lastHit: "",
                 targetShipOrientation: "",
                 shipCoordinates: [],
-                gameOver: false
+                gameOver: false,
+                userMessage: "",
+                computerMessage: ""
             }
         case types.SET_MESSAGE:
             return {
                 ...state,
                 message: action.data
             }
+        case types.USER_MESSAGE:
+            return {
+                ...state,
+                userMessage: action.data
+            }
+        case types.COMPUTER_MESSAGE:
+            return {
+                ...state,
+                computerMessage: action.data
+            }
+        
         default: 
             return state;
+            
     }
 }
 

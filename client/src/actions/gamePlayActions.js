@@ -40,3 +40,11 @@ export const setMessage = message => ({
     type: types.SET_MESSAGE,
     data: message
 })
+export const userMessage = userMessage => ({
+    type: types.USER_MESSAGE,
+    data: userMessage
+})
+export const computerMessage = computerMessage => ({
+    type: types.COMPUTER_MESSAGE,
+    data: computerMessage
+})

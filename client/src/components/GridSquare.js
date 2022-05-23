@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import "./GridSquare.css";
 import { useSelector, useDispatch } from "react-redux";
 import { modifySelectedSquares, updateLastActiveSquare, updateShipLocations, deleteShipLength } from "../actions/gameStartActions";
-import { updateShipCoordinates, updateShipIndex, deleteUserShipCoordinate, setMessage, updateLastHit } from "../actions/gamePlayActions";
-
+import { updateShipCoordinates, updateShipIndex, deleteUserShipCoordinate, computerMessage, updateLastHit } from "../actions/gamePlayActions";
+import convertSquareId from "../utils/convertSquareId"
 const GridSquare = ({ id, row, col }) => {
 
     const dispatch = useDispatch();
@@ -82,11 +82,11 @@ const GridSquare = ({ id, row, col }) => {
         if (!pickedPreviously && id in coordinatesPicked) {
             setPickedPreviously(true);
             if (selected) {
-                dispatch(setMessage("Computer hit your ship!"))
+                dispatch(computerMessage(`${convertSquareId(id)} - DIRECT HIT!`))
                 dispatch(updateShipIndex(id));
                 dispatch(deleteUserShipCoordinate(id));
             } else {
-                dispatch(setMessage("Computer missed!"))
+                dispatch(computerMessage(`${convertSquareId(id)} - TORPEDO MISSED!`))
                 dispatch(updateLastHit());
             } 
         } 
