@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import "./GridSquare.css";
 import { useSelector, useDispatch } from "react-redux";
+
 import { modifySelectedSquares, updateLastActiveSquare, updateShipLocations, deleteShipLength } from "../actions/gameStartActions";
 import { updateShipCoordinates, updateShipIndex, deleteUserShipCoordinate, computerMessage, updateLastHit } from "../actions/gamePlayActions";
 import convertSquareId from "../utils/convertSquareId"
+import "./GridSquare.css";
 
 const GridSquare = ({ id, row, col }) => {
 

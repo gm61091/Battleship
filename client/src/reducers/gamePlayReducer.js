@@ -21,7 +21,9 @@ const gamePlayReducer = (state, action) => {
             gameOver: false,
             userMessage: "",
             computerMessage: "",
-            computerTurn: false
+            computerTurn: false,
+            sunkShips: {},
+            computerStartingCoordinates: []
         }
     }
     switch (action.type) {
@@ -33,6 +35,7 @@ const gamePlayReducer = (state, action) => {
                 userMessage: "Click grid square on right to fire torpedo",
                 computerShipLocations: computerShipLocations,
                 computerShipCoordinates: separatedShipLocations,
+                computerStartingCoordinates: separatedShipLocations,
                 gameStarted: true
             }
         case types.DELETE_FROM_SHIP_COORDINATES:
@@ -41,7 +44,6 @@ const gamePlayReducer = (state, action) => {
                 const newShipList = shipList.filter(gridIdx => gridIdx !== action.data)
                 if (newShipList.length) newShipCoordinates.push(newShipList)
             }
-            console.log(newShipCoordinates);
             return {
                 ...state,
                 computerShipCoordinates: newShipCoordinates,
@@ -106,7 +108,6 @@ const gamePlayReducer = (state, action) => {
                 if (newShipList.length === 0) resetTargetShip = true;
                 else newUserShipCoordinates.push(newShipList);
             }
-            console.log(newUserShipCoordinates);
             return {
                 ...state,
                 shipCoordinates: newUserShipCoordinates,
@@ -146,7 +147,24 @@ const gamePlayReducer = (state, action) => {
                 ...state,
                 computerMessage: action.data
             }
-        
+        case types.ADD_TO_SUNK_SHIPS:
+            let shipIdx;
+            for (let idx = 0; idx < state.computerStartingCoordinates.length; idx++) {
+                for (const coordinate of state.computerStartingCoordinates[idx]) {
+                    if (coordinate === action.data) shipIdx = idx;
+                }
+            }
+            const sunkShipCoordinates = {};
+            for (const coordinate of state.computerStartingCoordinates[shipIdx]) {
+                sunkShipCoordinates[coordinate] = true;
+            }
+            return {
+                ...state,
+                sunkShips: {
+                    ...state.sunkShips,
+                    ...sunkShipCoordinates
+                }
+            }
         default: 
             return state;
             

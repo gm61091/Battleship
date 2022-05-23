@@ -54,3 +54,8 @@ export const computerMessage = computerMessage => ({
     type: types.COMPUTER_MESSAGE,
     data: computerMessage
 })
+
+export const addToSunkShips = id => ({
+    type: types.ADD_TO_SUNK_SHIPS,
+    data: id
+})
