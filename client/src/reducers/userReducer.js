@@ -12,7 +12,6 @@ const userReducer = (state, action) => {
     }
     switch (action.type) {
         case types.LOAD_USER_INFO:
-            console.log(action.data);
             return {
                 ...action.data
             }
@@ -25,6 +24,11 @@ const userReducer = (state, action) => {
             return {
                 ...state,
                 losses: action.data
+            }
+        case types.SAVE_GAME:
+            return {
+                ...state,
+                savedGame: action.data
             }
         default: 
             return state;

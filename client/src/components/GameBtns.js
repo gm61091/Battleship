@@ -4,16 +4,17 @@ import Button from "react-bootstrap/Button";
 
 import { modifyShipOrientation, resetGameBoard, resetGame } from "../actions/gameStartActions";
 import { startGame, nextComputerMove, setComputerTurn, computerMessage, loadGame, setGameSaved } from "../actions/gamePlayActions";
+import { saveGame } from "../actions/userActions";
 import saveGameInDatabase from "../utils/saveGameInDatabase";
 
 const GameBtns = () => {
 
     const dispatch = useDispatch();
-    const { shipOrientation, shipLengths } = useSelector(state => state.gameStart);
+    const gameStartObj = useSelector(state => state.gameStart);
+    const { shipOrientation, shipLengths } = gameStartObj;
     const gamePlayObj = useSelector(state => state.gamePlay);
     const { gameStarted, gameOver } = gamePlayObj;
     const { savedGame, email } = useSelector(state => state.user);
-    console.log(savedGame)
 
     const handleStartGame = () => {
         dispatch(startGame());
@@ -28,8 +29,10 @@ const GameBtns = () => {
     }
 
     const handleSave = () => {
+        const game = JSON.stringify({ gamePlay: gamePlayObj, gameStart: gameStartObj })
+        dispatch(saveGame(game))
+        saveGameInDatabase(email, game);
         dispatch(setGameSaved());
-        saveGameInDatabase(email, JSON.stringify(gamePlayObj));
         setTimeout(() => {
             dispatch(resetGame());
         }, 5 * 1000)
@@ -46,7 +49,7 @@ const GameBtns = () => {
                         Reset Board
                     </Button>
                     {savedGame && 
-                        <Button variant="primary mx-3" onClick={() => dispatch(loadGame(savedGame))}>
+                        <Button variant="primary" onClick={() => dispatch(loadGame(JSON.parse(savedGame)))}>
                             Load Game
                         </Button>
                     }

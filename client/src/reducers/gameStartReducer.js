@@ -12,6 +12,10 @@ const gameStartReducer = (state, action) => {
         }
     }
     switch (action.type) {
+        case types.LOAD_GAME:
+            return {
+                ...action.data.gameStart
+            }
         case types.MODIFY_SHIP_LENGTH:
             return {
                 ...state,

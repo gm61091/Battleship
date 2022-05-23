@@ -14,6 +14,7 @@ const gamePlayReducer = (state, action) => {
             message: "Position your ships on the grid!",
             gridIndices: generateGridIndices(),
             coordinatesPicked: {},
+            userSelections: {},
             shipIndex: "",
             lastHit: "",
             targetShipOrientation: "",
@@ -32,7 +33,7 @@ const gamePlayReducer = (state, action) => {
             const [computerShipLocations, separatedShipLocations] = generateComputerShipLocations();
             return {
                 ...state,
-                userMessage: "Click grid square on right to fire torpedo",
+                userMessage: "Click grid square to fire torpedo",
                 computerShipLocations: computerShipLocations,
                 computerShipCoordinates: separatedShipLocations,
                 computerStartingCoordinates: separatedShipLocations,
@@ -40,7 +41,7 @@ const gamePlayReducer = (state, action) => {
             }
         case types.LOAD_GAME:
             return {
-                ...action.data
+                ...action.data.gamePlay
             }
         case types.DELETE_FROM_SHIP_COORDINATES:
             const newShipCoordinates = [];
@@ -173,8 +174,17 @@ const gamePlayReducer = (state, action) => {
         case types.SET_GAME_SAVED:
             return {
                 ...state,
-                gameSaved: true
+                gameSaved: true,
+                gameOver: true
             } 
+        case types.ADD_TO_USER_SELECTIONS:
+            return {
+                ...state,
+                userSelections: {
+                    ...state.userSelections,
+                    [action.data]: true
+                }
+            }
         default: 
             return state;
             

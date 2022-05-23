@@ -68,3 +68,8 @@ export const addToSunkShips = id => ({
 export const setGameSaved = () => ({
     type: types.SET_GAME_SAVED
 })
+
+export const addToUserSelections = id => ({
+    type: types.ADD_TO_USER_SELECTIONS,
+    data: id
+})
