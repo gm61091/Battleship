@@ -88,14 +88,14 @@ const GridSquare = ({ id, row, col }) => {
                 for (const ship of shipCoordinates) {
                     if (ship.length === 1 && ship[0] === id) {
                         shipSunk = true;
-                        dispatch(computerMessage(`${convertSquareId(id)} - SHIP SUNK!`));
+                        dispatch(computerMessage(`${convertSquareId(id)} SHIP SUNK!`));
                     }
                 }
-                if (!shipSunk) dispatch(computerMessage(`${convertSquareId(id)} - DIRECT HIT!`))
+                if (!shipSunk) dispatch(computerMessage(`${convertSquareId(id)} DIRECT HIT!`))
                 dispatch(updateShipIndex(id));
                 dispatch(deleteUserShipCoordinate(id));
             } else {
-                dispatch(computerMessage(`${convertSquareId(id)} - TORPEDO MISSED!`))
+                dispatch(computerMessage(`${convertSquareId(id)} TORPEDO MISSED!`))
                 dispatch(updateLastHit());
             } 
         } 
