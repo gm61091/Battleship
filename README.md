@@ -15,7 +15,7 @@ This app is modeled after the classic game Battleship. In this app, the user mus
 * Node
 
 ## Creators
-James Riddle, Project Manager - Portfolio | [Github]: https://github.com/jamescr757 "Github"
+James Riddle, Project Manager - Portfolio | [Github]:(https://github.com/jamescr757)
 Dezarea Bryan, Technical Writer - Portfolio | [Github] https://github.com/DezSays "Github" 
 Gary Merriman, -insert title here- - Portfolio | [Github] https://github.com/gm61091 "Github"
 
