@@ -1,12 +1,16 @@
 .background {
-    background-color: green;
-    height: 100vh;
+    background-image: url("../../public/images/battleshipImage.jpeg");
+    background-repeat: no-repeat;
+    /* Background-size: 
+    background-position:
+     */
+    
 }
 
 .gameplay {
     width: 90vw;
     margin: auto;
-    border: red solid 1px;
+    /* border: red solid 1px; */
     display: flex;
 }
 
@@ -35,7 +39,7 @@
 
 .ship-yard {
     height: 45vh;
-    background-color: black;
+    /* background-color: black; */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -44,16 +48,17 @@
 
 .message-box {
     height: 27.5vh;
-    background-color: blue;
+    /* background-color: blue; */
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 1.5rem;
     color: white;
+    border: black solid 1px;
 }
 
 .game-btns {
-    border: red solid 1px;
+    /* border: red solid 1px; */
     width: 90vw;
     margin: auto;
 }
