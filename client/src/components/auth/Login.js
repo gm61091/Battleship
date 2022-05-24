@@ -3,11 +3,12 @@ import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
 
+import ErrorMessage from "./ErrorMessage";
+import SubmitBtn from "./SubmitBtn";
 import { addToken } from "../../actions/authActions";
 import { loadUserInfo } from "../../actions/userActions";
-import "./Login.css"
+import "./Auth.css"
 
 const Login = () => {
 
@@ -55,10 +56,12 @@ const Login = () => {
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
                 </Form.Group>
-                {message && <span className="message-span text-danger">{message}</span>}
-                <Button className={message ? "my-3" : "mb-3"} variant="success" onClick={handleSubmit} style={{ display: "block" }}>
-                    Login
-                </Button>
+                {message && <ErrorMessage message={message} />}
+                <SubmitBtn
+                    text="Log In"
+                    message={message}
+                    handleClick={handleSubmit}
+                />
                 <div>
                     <span>Don't have an account? </span>
                     <Link to="/register">Register here</Link>

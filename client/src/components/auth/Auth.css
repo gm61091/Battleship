@@ -7,8 +7,5 @@
 
 .login-form {
     width: 320px;
-}
-
-.message-span {
-    margin-bottom: 16px;
+    background-color: rgb(231, 228, 228);
 }
