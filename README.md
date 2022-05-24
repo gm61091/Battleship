@@ -20,4 +20,3 @@ This app is modeled after the classic game Battleship. In this app, the user mus
 - Gary Merriman, -insert title here- - Portfolio | [Github](https://github.com/gm61091) 
 
 
-# Full Stack Project - Digital Crafts
