@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 
 import PlayerBoard from "./PlayerBoard";
 import ComputerBoard from "./ComputerBoard";
+import Footer from "../layout/Footer";
+import Header from "../layout/Header";
 import MessageBox from "./MessageBox";
 import GameBtns from "./GameBtns";
 import { updateWins, updateLosses } from "../actions/userActions";
@@ -32,7 +34,7 @@ const Main = () => {
 
     return (
         <div className="background">
-            <h1 className="header-txt">Battleship</h1>
+            <Header />
             <div className="gameplay">
                 <PlayerBoard gridArray={gridArray} />
                 <div className="right-column mt-3">
@@ -41,9 +43,8 @@ const Main = () => {
                 </div>
             </div>
             <GameBtns />
-            <footer className="footer-txt">
-                <p>Copyright &copy; <a href="https://github.com/jamescr757" target="_blank">James Riddle</a>, <a href="https://github.com/DezSays"  target="_blank">Dezarea Bryan</a>, <a href="https://github.com/gm61091" target="_blank">Gary Merriman</a></p>
-            </footer>
+            <Footer />
+            
         </div>
     )
 }

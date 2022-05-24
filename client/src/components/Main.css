@@ -56,18 +56,3 @@
     justify-content: center;
 }
 
-.header-txt{
-    text-align: center;
-    padding-top: 8px;
-    margin-bottom: 0px;
-    color: white;
-    font-family: 'Cinzel', serif;
-    font-size: 45px;
-}
-
-.footer-txt{
-    font-family: 'Cinzel', serif;
-    text-align:right;
-    color: white;
-    font-size: 12px;
-}

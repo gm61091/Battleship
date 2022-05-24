@@ -1,1 +1,9 @@
-/* standard css rules here */
+.footer-txt{
+    font-family: 'Cinzel', serif;
+    text-align:right;
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+    padding-right:10px
+    
+}
