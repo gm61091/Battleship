@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+
+import SubmitBtn from "./SubmitBtn";
+import ErrorMessage from "./ErrorMessage";
+import "./Auth.css"
 
 const Register = () => {
 
@@ -18,36 +21,33 @@ const Register = () => {
         event.preventDefault();
         if (email && password && name && confirmPassword) {
             if (!(email.match(/.+@.+\....+/))) {
-                // please enter valid email address
-                setMessage("there's been an error")
+                setMessage("Please enter a valid email address")
             } else if (password !== confirmPassword) {
-                // passwords don't match
-                setMessage("there's been an error")
+                setMessage("Confirmation password does not match")
             } else {
+                setMessage("")
                 try {
                     const response = await axios.post("/register", { email, password, name });
+                    console.log(response.status)
                     if (response.status === 200) {
                         navigate("/login");
-                    } else if (response.status === 422) {
-                        // email already exists
-                        setMessage("there's been an error")
+                    } else if (response.status === 204) {
+                        setMessage("That email already exists")
                     } else {
-                        // server error
-                        setMessage("there's been an error")
+                        setMessage("Server error... please try again later")
                     }
                 } catch (error) {
-                    setMessage("there's been an error")
+                    setMessage("Server error... please try again later")
                 }
             }
         } else {
-            // please fill out all input fields
-            setMessage("there's been an error")
+            setMessage("Please fill out all input fields")
         }
     }
 
     return (
-        <>
-            <Form>
+        <div className="form-container background">
+            <Form className="login-form rounded shadow p-3">
                 <Form.Group className="mb-3" controlId="formBasicName">
                     <Form.Label>Name</Form.Label>
                     <Form.Control type="text" placeholder="Enter name" value={name} onChange={e => setName(e.target.value)} />
@@ -64,12 +64,14 @@ const Register = () => {
                     <Form.Label>Confirm Password</Form.Label>
                     <Form.Control type="password" placeholder="Password" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} />
                 </Form.Group>
-                <Button variant="success" onClick={handleSubmit}>
-                    Register
-                </Button>
-                {/* {message && <Component />} */}
+                {message && <ErrorMessage message={message} />}
+                <SubmitBtn
+                    text="Register"
+                    message={message}
+                    handleClick={handleSubmit}
+                />
             </Form>
-        </>
+        </div>
     )
 }
 

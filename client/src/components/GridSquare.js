@@ -107,8 +107,8 @@ const GridSquare = ({ id, row, col }) => {
 
     return (
         <div 
-            className={`grid-square${!gameStarted ? highlighted : ""}${selected}`} 
-            onMouseEnter={handleHover} 
+            className={`grid-square${!gameStarted ? highlighted : ""}${selected}`}
+            onMouseEnter={handleHover}
             onClick={handleClick}
             style={gameStarted ? { cursor: "default" } : { cursor: "pointer" }}
         >
