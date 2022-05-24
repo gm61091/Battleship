@@ -3,7 +3,7 @@ const router = express.Router();
 const db = require('../../models');
 
 router.put('/:email/:updatedWins', async (req, res) => {
-  try{
+  try {
     await db.User.update({
       wins: req.params.updatedWins
     }, {

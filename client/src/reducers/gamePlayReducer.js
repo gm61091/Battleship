@@ -60,28 +60,30 @@ const gamePlayReducer = (state, action) => {
                 computerTurn: true
             }
         case types.NEXT_COMPUTER_MOVE:
-            let [selectedGridIndex, modifyShipOrientation, modifyShipIndex] = [null, null, null];
-            if (state.shipIndex) {
-                selectedGridIndex = determineNextIndex(state.shipIndex, state.lastHit, state.targetShipOrientation, state.coordinatesPicked);
-                if (!selectedGridIndex) {
-                    modifyShipOrientation = true;
-                    selectedGridIndex = determineNextIndex(state.shipIndex, "", "", state.coordinatesPicked);
+            if (!state.gameOver) {
+                let [selectedGridIndex, modifyShipOrientation, modifyShipIndex] = [null, null, null];
+                if (state.shipIndex) {
+                    selectedGridIndex = determineNextIndex(state.shipIndex, state.lastHit, state.targetShipOrientation, state.coordinatesPicked);
                     if (!selectedGridIndex) {
-                        modifyShipIndex = true;
-                        selectedGridIndex = selectRandomIndex(state.gridIndices);
+                        modifyShipOrientation = true;
+                        selectedGridIndex = determineNextIndex(state.shipIndex, "", "", state.coordinatesPicked);
+                        if (!selectedGridIndex) {
+                            modifyShipIndex = true;
+                            selectedGridIndex = selectRandomIndex(state.gridIndices);
+                        }
                     }
+                } else selectedGridIndex = selectRandomIndex(state.gridIndices);
+                return {
+                    ...state,
+                    targetShipOrientation: modifyShipOrientation ? "" : state.targetShipOrientation,
+                    shipIndex: modifyShipIndex ? "" : state.shipIndex,
+                    coordinatesPicked: {
+                        ...state.coordinatesPicked,
+                        [selectedGridIndex]: true
+                    },
+                    gridIndices: state.gridIndices.filter(index => index !== selectedGridIndex),
+                    computerTurn: false
                 }
-            } else selectedGridIndex = selectRandomIndex(state.gridIndices);
-            return {
-                ...state,
-                targetShipOrientation: modifyShipOrientation ? "" : state.targetShipOrientation,
-                shipIndex: modifyShipIndex ? "" : state.shipIndex,
-                coordinatesPicked: {
-                    ...state.coordinatesPicked,
-                    [selectedGridIndex]: true
-                },
-                gridIndices: state.gridIndices.filter(index => index !== selectedGridIndex),
-                computerTurn: false
             }
         case types.UPDATE_SHIP_INDEX:
             let [modifyShipIdx, shipOrientation, lastHit] = [false, "", ""];
