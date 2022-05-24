@@ -46,7 +46,7 @@ const Register = () => {
     }
 
     return (
-        <div className="form-container">
+        <div className="form-container background">
             <Form className="login-form rounded shadow p-3">
                 <Form.Group className="mb-3" controlId="formBasicName">
                     <Form.Label>Name</Form.Label>
