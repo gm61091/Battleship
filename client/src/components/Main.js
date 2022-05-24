@@ -32,7 +32,7 @@ const Main = () => {
 
     return (
         <div className="background">
-            <h1 className="text-center">Battleship</h1>
+            <h1 className="header-txt">Battleship</h1>
             <div className="gameplay">
                 <PlayerBoard gridArray={gridArray} />
                 <div className="right-column mt-3">
@@ -41,6 +41,9 @@ const Main = () => {
                 </div>
             </div>
             <GameBtns />
+            <footer className="footer-txt">
+                <p>Copyright &copy; <a href="https://github.com/jamescr757" target="_blank">James Riddle</a>, <a href="https://github.com/DezSays"  target="_blank">Dezarea Bryan</a>, <a href="https://github.com/gm61091" target="_blank">Gary Merriman</a></p>
+            </footer>
         </div>
     )
 }
