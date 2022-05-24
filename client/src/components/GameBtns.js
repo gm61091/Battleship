@@ -42,7 +42,7 @@ const GameBtns = () => {
         <div className="game-btns mt-3">
             {!gameStarted &&
                 <>
-                    {shipLengths.length && 
+                    {shipLengths.length !== 0 && 
                         <Button variant="primary" size="lg" onClick={() => dispatch(modifyShipOrientation())}>
                             {shipOrientation === "vertical" ? "Horizontal" : "Vertical"}
                         </Button>
@@ -64,16 +64,16 @@ const GameBtns = () => {
             }
             {gameStarted && !gameOver &&
                 <>
-                    <Button variant="primary mx-3" size="lg" onClick={handleSave}>
+                    <Button variant="primary" size="lg" onClick={handleSave}>
                         Save Game
                     </Button>
-                    <Button variant="primary mx-3" size="lg" onClick={() => dispatch(resetGame())}>
+                    <Button variant="primary ms-3" size="lg" onClick={() => dispatch(resetGame())}>
                         Reset Game
                     </Button>
                 </>
             }
             {gameOver &&
-                <Button variant="primary mx-3" size="lg" onClick={() => dispatch(resetGame())}>
+                <Button variant="primary" size="lg" onClick={() => dispatch(resetGame())}>
                     Reset Game
                 </Button>
             }

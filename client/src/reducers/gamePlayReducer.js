@@ -63,6 +63,7 @@ const gamePlayReducer = (state, action) => {
                 computerTurn: true
             }
         case types.NEXT_COMPUTER_MOVE:
+            console.log(state.shipIndex, state.lastHit, state.targetShipOrientation)
             if (!state.gameOver) {
                 let [selectedGridIndex, modifyShipOrientation, modifyShipIndex] = [null, null, null];
                 if (state.shipIndex) {

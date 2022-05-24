@@ -80,7 +80,7 @@ const GridSquare = ({ id, row, col }) => {
         id in shipLocations ? setSelected(" selected") : setSelected("");
     }, [shipLocations])
 
-    useEffect(() => {
+    useEffect(() => {  
         if (!pickedPreviously && id in coordinatesPicked) {
             setPickedPreviously(true);
             if (selected) {
@@ -105,6 +105,10 @@ const GridSquare = ({ id, row, col }) => {
     useEffect(() => {
         if (id === lastActiveSquare) handleHover();
     }, [shipOrientation])
+
+    useEffect(() => {
+        setPickedPreviously(false)
+    }, [gameStarted])
 
     return (
         <div 
