@@ -14,7 +14,8 @@ router.get('/protected', requireJwt, (req, res) =>{
         wins: req.user.wins,
         losses: req.user.losses,
         name: req.user.name,
-        email: req.user.email
+        email: req.user.email,
+        savedGame: req.user.savedGame
     })
 })
 

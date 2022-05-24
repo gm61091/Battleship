@@ -14,25 +14,34 @@ const gamePlayReducer = (state, action) => {
             message: "Position your ships on the grid!",
             gridIndices: generateGridIndices(),
             coordinatesPicked: {},
+            userSelections: {},
             shipIndex: "",
             lastHit: "",
             targetShipOrientation: "",
             shipCoordinates: [], 
             gameOver: false,
             userMessage: "",
-            computerMessage: ""
+            computerMessage: "",
+            computerTurn: false,
+            sunkShips: {},
+            computerStartingCoordinates: [],
+            gameSaved: false
         }
     }
     switch (action.type) {
         case types.START_GAME:
             const [computerShipLocations, separatedShipLocations] = generateComputerShipLocations();
-            console.log(separatedShipLocations)
             return {
                 ...state,
-                userMessage: "Click grid square on right to fire torpedo",
+                userMessage: "Click grid square to fire torpedo",
                 computerShipLocations: computerShipLocations,
                 computerShipCoordinates: separatedShipLocations,
+                computerStartingCoordinates: separatedShipLocations,
                 gameStarted: true
+            }
+        case types.LOAD_GAME:
+            return {
+                ...action.data.gamePlay
             }
         case types.DELETE_FROM_SHIP_COORDINATES:
             const newShipCoordinates = [];
@@ -40,34 +49,41 @@ const gamePlayReducer = (state, action) => {
                 const newShipList = shipList.filter(gridIdx => gridIdx !== action.data)
                 if (newShipList.length) newShipCoordinates.push(newShipList)
             }
-            console.log(newShipCoordinates);
             return {
                 ...state,
                 computerShipCoordinates: newShipCoordinates,
                 gameOver: newShipCoordinates.length === 0
             }
-        case types.NEXT_COMPUTER_MOVE:
-            let [selectedGridIndex, modifyShipOrientation, modifyShipIndex] = [null, null, null];
-            if (state.shipIndex) {
-                selectedGridIndex = determineNextIndex(state.shipIndex, state.lastHit, state.targetShipOrientation, state.coordinatesPicked);
-                if (!selectedGridIndex) {
-                    modifyShipOrientation = true;
-                    selectedGridIndex = determineNextIndex(state.shipIndex, "", "", state.coordinatesPicked);
-                    if (!selectedGridIndex) {
-                        modifyShipIndex = true;
-                        selectedGridIndex = selectRandomIndex(state.gridIndices);
-                    }
-                }
-            } else selectedGridIndex = selectRandomIndex(state.gridIndices);
+        case types.SET_COMPUTER_TURN:
             return {
                 ...state,
-                targetShipOrientation: modifyShipOrientation ? "" : state.targetShipOrientation,
-                shipIndex: modifyShipIndex ? "" : state.shipIndex,
-                coordinatesPicked: {
-                    ...state.coordinatesPicked,
-                    [selectedGridIndex]: true
-                },
-                gridIndices: state.gridIndices.filter(index => index !== selectedGridIndex)
+                computerTurn: true
+            }
+        case types.NEXT_COMPUTER_MOVE:
+            if (!state.gameOver) {
+                let [selectedGridIndex, modifyShipOrientation, modifyShipIndex] = [null, null, null];
+                if (state.shipIndex) {
+                    selectedGridIndex = determineNextIndex(state.shipIndex, state.lastHit, state.targetShipOrientation, state.coordinatesPicked);
+                    if (!selectedGridIndex) {
+                        modifyShipOrientation = true;
+                        selectedGridIndex = determineNextIndex(state.shipIndex, "", "", state.coordinatesPicked);
+                        if (!selectedGridIndex) {
+                            modifyShipIndex = true;
+                            selectedGridIndex = selectRandomIndex(state.gridIndices);
+                        }
+                    }
+                } else selectedGridIndex = selectRandomIndex(state.gridIndices);
+                return {
+                    ...state,
+                    targetShipOrientation: modifyShipOrientation ? "" : state.targetShipOrientation,
+                    shipIndex: modifyShipIndex ? "" : state.shipIndex,
+                    coordinatesPicked: {
+                        ...state.coordinatesPicked,
+                        [selectedGridIndex]: true
+                    },
+                    gridIndices: state.gridIndices.filter(index => index !== selectedGridIndex),
+                    computerTurn: false
+                }
             }
         case types.UPDATE_SHIP_INDEX:
             let [modifyShipIdx, shipOrientation, lastHit] = [false, "", ""];
@@ -99,7 +115,6 @@ const gamePlayReducer = (state, action) => {
                 if (newShipList.length === 0) resetTargetShip = true;
                 else newUserShipCoordinates.push(newShipList);
             }
-            console.log(newUserShipCoordinates);
             return {
                 ...state,
                 shipCoordinates: newUserShipCoordinates,
@@ -113,7 +128,7 @@ const gamePlayReducer = (state, action) => {
                 gameStarted: false,
                 computerShipLocations: {},
                 computerShipCoordinates: [],
-                message: "",
+                message: "Position your ships on the grid!",
                 gridIndices: generateGridIndices(),
                 coordinatesPicked: {},
                 shipIndex: "",
@@ -122,7 +137,8 @@ const gamePlayReducer = (state, action) => {
                 shipCoordinates: [],
                 gameOver: false,
                 userMessage: "",
-                computerMessage: ""
+                computerMessage: "",
+                gameSaved: false
             }
         case types.SET_MESSAGE:
             return {
@@ -139,7 +155,38 @@ const gamePlayReducer = (state, action) => {
                 ...state,
                 computerMessage: action.data
             }
-        
+        case types.ADD_TO_SUNK_SHIPS:
+            let shipIdx;
+            for (let idx = 0; idx < state.computerStartingCoordinates.length; idx++) {
+                for (const coordinate of state.computerStartingCoordinates[idx]) {
+                    if (coordinate === action.data) shipIdx = idx;
+                }
+            }
+            const sunkShipCoordinates = {};
+            for (const coordinate of state.computerStartingCoordinates[shipIdx]) {
+                sunkShipCoordinates[coordinate] = true;
+            }
+            return {
+                ...state,
+                sunkShips: {
+                    ...state.sunkShips,
+                    ...sunkShipCoordinates
+                }
+            }
+        case types.SET_GAME_SAVED:
+            return {
+                ...state,
+                gameSaved: true,
+                gameOver: true
+            } 
+        case types.ADD_TO_USER_SELECTIONS:
+            return {
+                ...state,
+                userSelections: {
+                    ...state.userSelections,
+                    [action.data]: true
+                }
+            }
         default: 
             return state;
             

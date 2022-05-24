@@ -1,0 +1,11 @@
+.form-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-form {
+    width: 320px;
+    background-color: rgb(231, 228, 228);
+}

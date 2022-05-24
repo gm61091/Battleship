@@ -6,16 +6,14 @@ const userReducer = (state, action) => {
             email: "",
             name: "",
             wins: 0,
-            losses: 0
+            losses: 0,
+            savedGame: false
         }
     }
     switch (action.type) {
         case types.LOAD_USER_INFO:
             return {
-                email: action.data.email,
-                name: action.data.name,
-                wins: action.data.wins,
-                losses: action.data.losses 
+                ...action.data
             }
         case types.UPDATE_USER_WINS:
             return {
@@ -26,6 +24,11 @@ const userReducer = (state, action) => {
             return {
                 ...state,
                 losses: action.data
+            }
+        case types.SAVE_GAME:
+            return {
+                ...state,
+                savedGame: action.data
             }
         default: 
             return state;
