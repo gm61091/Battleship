@@ -19,11 +19,13 @@ const gamePlayReducer = (state, action) => {
             lastHit: "",
             targetShipOrientation: "",
             shipCoordinates: [], 
+            startingShipCoordinates: [],
             gameOver: false,
             userMessage: "",
             computerMessage: "",
             computerTurn: false,
             sunkShips: {},
+            computerSunkShips: {},
             computerStartingCoordinates: [],
             gameSaved: false
         }
@@ -37,6 +39,7 @@ const gamePlayReducer = (state, action) => {
                 computerShipLocations: computerShipLocations,
                 computerShipCoordinates: separatedShipLocations,
                 computerStartingCoordinates: separatedShipLocations,
+                startingShipCoordinates: state.shipCoordinates,
                 gameStarted: true
             }
         case types.LOAD_GAME:
@@ -138,7 +141,14 @@ const gamePlayReducer = (state, action) => {
                 gameOver: false,
                 userMessage: "",
                 computerMessage: "",
-                gameSaved: false
+                gameSaved: false,
+                gameStarted: false,
+                userSelections: {},
+                startingShipCoordinates: [],
+                computerTurn: false,
+                sunkShips: {},
+                computerSunkShips: {},
+                computerStartingCoordinates: []
             }
         case types.SET_MESSAGE:
             return {
@@ -171,6 +181,24 @@ const gamePlayReducer = (state, action) => {
                 sunkShips: {
                     ...state.sunkShips,
                     ...sunkShipCoordinates
+                }
+            }
+        case types.ADD_TO_COMPUTER_SUNK_SHIPS:
+            let shipIndex;
+            for (let idx = 0; idx < state.startingShipCoordinates.length; idx++) {
+                for (const coordinate of state.startingShipCoordinates[idx]) {
+                    if (coordinate === action.data) shipIndex = idx;
+                }
+            }
+            const sunkShipIds = {};
+            for (const coordinate of state.startingShipCoordinates[shipIndex]) {
+                sunkShipIds[coordinate] = true;
+            }
+            return {
+                ...state,
+                computerSunkShips: {
+                    ...state.computerSunkShips,
+                    ...sunkShipIds
                 }
             }
         case types.SET_GAME_SAVED:

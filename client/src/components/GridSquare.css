@@ -32,6 +32,10 @@
     background-color: rgba(28, 4, 166, 0.503);
 }
 
+.sunk {
+    background-color: rgba(87, 0, 0, 0.503);
+}
+
 .ship {
     display: flex;
     flex-wrap: nowrap;
