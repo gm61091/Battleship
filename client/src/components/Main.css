@@ -1,12 +1,10 @@
 .background {
-    background-color: green;
     height: 100vh;
 }
 
 .gameplay {
     width: 90vw;
     margin: auto;
-    border: red solid 1px;
     display: flex;
 }
 
@@ -35,7 +33,6 @@
 
 .ship-yard {
     height: 45vh;
-    background-color: black;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -44,7 +41,7 @@
 
 .message-box {
     height: 27.5vh;
-    background-color: blue;
+    border: black solid 2px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -53,7 +50,8 @@
 }
 
 .game-btns {
-    border: red solid 1px;
     width: 90vw;
     margin: auto;
+    display: flex;
+    justify-content: center;
 }
