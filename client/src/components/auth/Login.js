@@ -4,8 +4,10 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+
 import { addToken } from "../../actions/authActions";
 import { loadUserInfo } from "../../actions/userActions";
+import "./Login.css"
 
 const Login = () => {
 
@@ -20,6 +22,7 @@ const Login = () => {
         event.preventDefault();
         if (email && password) {
             if (email.match(/.+@.+\....+/)) {
+                setMessage("");
                 try {
                     const response = await axios.post("/login", { email, password });
                     if (response.data) {
@@ -28,26 +31,22 @@ const Login = () => {
                         localStorage.setItem("token", response.data.token);
                         navigate("/");
                     } else {
-                        // invalid password and email combination
-                        setMessage("there's been an error")
+                        setMessage("Email and/or password is incorrect")
                     }
                 } catch (error) {
-                    // invalid password and email combination
-                    setMessage("there's been an error")
+                    setMessage("Email and/or password is incorrect")
                 }
             } else {
-                // please enter valid email address
-                setMessage("there's been an error")
+                setMessage("Please enter a valid email address")
             }
         } else {
-            // please fill out all input fields
-            setMessage("there's been an error")
+            setMessage("Please fill out all fields")
         }
     }
 
     return (
-        <>
-            <Form>
+        <div className="form-container">
+            <Form className="login-form rounded shadow p-3">
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
                     <Form.Control type="text" placeholder="Enter email" value={email} onChange={e => setEmail(e.target.value)} />
@@ -56,13 +55,16 @@ const Login = () => {
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
                 </Form.Group>
-                <Button variant="success" onClick={handleSubmit}>
+                {message && <span className="message-span text-danger">{message}</span>}
+                <Button className={message ? "my-3" : "mb-3"} variant="success" onClick={handleSubmit} style={{ display: "block" }}>
                     Login
                 </Button>
-                <Link to="/register">Register here</Link>
-                {/* {message && <Component />} */}
+                <div>
+                    <span>Don't have an account? </span>
+                    <Link to="/register">Register here</Link>
+                </div>
             </Form>
-        </>
+        </div>
     )
 }
 
