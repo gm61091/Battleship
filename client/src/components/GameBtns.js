@@ -2,19 +2,45 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "react-bootstrap/Button";
 
-
 import { modifyShipOrientation, resetGameBoard, resetGame } from "../actions/gameStartActions";
-import { startGame } from "../actions/gamePlayActions";
+import { startGame, nextComputerMove, setComputerTurn, computerMessage, loadGame, setGameSaved } from "../actions/gamePlayActions";
+import { saveGame } from "../actions/userActions";
+import saveGameInDatabase from "../utils/saveGameInDatabase";
 
 const GameBtns = () => {
 
     const dispatch = useDispatch();
-    const { shipOrientation, shipLengths } = useSelector(state => state.gameStart);
-    const { gameStarted, computerShipCoordinates, message, shipCoordinates, gameOver } = useSelector(state => state.gamePlay);
+    const gameStartObj = useSelector(state => state.gameStart);
+    const { shipOrientation, shipLengths } = gameStartObj;
+    const gamePlayObj = useSelector(state => state.gamePlay);
+    const { gameStarted, gameOver } = gamePlayObj;
+    const { savedGame, email } = useSelector(state => state.user);
+
+    const handleStartGame = () => {
+        dispatch(startGame());
+        const randomNumber = Math.floor(Math.random() * 2);
+        if (randomNumber === 0) {
+            dispatch(setComputerTurn());
+            dispatch(computerMessage("Computer goes first"));
+            setTimeout(() => {
+                dispatch(nextComputerMove());
+            }, 1 * 1000)
+        }
+    }
+
+    const handleSave = () => {
+        const game = JSON.stringify({ gamePlay: gamePlayObj, gameStart: gameStartObj })
+        dispatch(saveGame(game))
+        saveGameInDatabase(email, game);
+        dispatch(setGameSaved());
+        setTimeout(() => {
+            dispatch(resetGame());
+        }, 5 * 1000)
+    }
 
     return (
         <div className="game-btns mt-3">
-            {!gameStarted &&  
+            {!gameStarted &&
                 <>
                     <Button variant="primary" onClick={() => dispatch(modifyShipOrientation())}>
                         {shipOrientation === "vertical" ? "Horizontal" : "Vertical"}
@@ -22,19 +48,24 @@ const GameBtns = () => {
                     <Button variant="primary mx-3" onClick={() => dispatch(resetGameBoard())}>
                         Reset Board
                     </Button>
-                </> 
+                    {savedGame && 
+                        <Button variant="primary" onClick={() => dispatch(loadGame(JSON.parse(savedGame)))}>
+                            Load Game
+                        </Button>
+                    }
+                </>
             }
-            {!shipLengths.length && !gameStarted && 
-                <Button variant="primary mx-3" onClick={() => dispatch(startGame())}>
+            {!shipLengths.length && !gameStarted &&
+                <Button variant="primary mx-3" onClick={handleStartGame}>
                     Start Game
                 </Button>
             }
-            {/* {gameStarted && 
-                <Button variant="primary mx-3" onClick={() => dispatch(nextComputerMove())}>
-                    Next Move
+            {gameStarted && !gameOver &&
+                <Button variant="primary mx-3" onClick={handleSave}>
+                    Save Game
                 </Button>
-            } */}
-            {gameOver && 
+            }
+            {gameOver &&
                 <Button variant="primary mx-3" onClick={() => dispatch(resetGame())}>
                     Reset Game
                 </Button>

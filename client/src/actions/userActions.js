@@ -14,3 +14,8 @@ export const loadUserInfo = user => ({
     type: types.LOAD_USER_INFO,
     data: user  
 })
+
+export const saveGame = game => ({
+    type: types.SAVE_GAME,
+    data: game  
+})

@@ -16,6 +16,9 @@ module.exports = (sequelize, DataTypes) => {
         losses: {
             type: DataTypes.INTEGER,
             defaultValue: 0  
+        },
+        savedGame: {
+            type: DataTypes.TEXT
         }
     }, {
         freezeTableName: true,

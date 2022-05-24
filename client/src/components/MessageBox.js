@@ -1,33 +1,18 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 
-import { updateUserLossesInDatabase, updateUserWinsInDatabase } from "../utils/updateUserRecord";
-import { updateWins, updateLosses } from "../actions/userActions";
-import { setMessage } from "../actions/gamePlayActions";
 import GameMessage from "./GameMessage"
+import "./MessageBox.css"
 
 const MessageBox = () => {
 
-    const dispatch = useDispatch();
-    const { gameStarted, message, shipCoordinates, gameOver } = useSelector(state => state.gamePlay);
-    const { wins, losses, email } = useSelector(state => state.user);
-
-    // useEffect(() => {
-    //     if (gameOver && shipCoordinates.length) {
-    //         setMessage("You win!");
-    //         updateUserWinsInDatabase(email, wins + 1);
-    //         dispatch(updateWins(wins + 1));
-    //     } else if (gameOver) {
-    //         setMessage("You lose!");
-    //         updateUserLossesInDatabase(email, losses + 1);
-    //         dispatch(updateLosses(losses + 1));
-    //     }
-    // }, [gameOver])
+    const { gameStarted, gameOver, message, gameSaved } = useSelector(state => state.gamePlay);
 
     return (
-        <div className="message-box mx-3">
-            {(!gameStarted || gameOver) && message}
-            {(!gameOver && gameStarted) && <GameMessage />}
+        <div className={`message-box mx-3 px-2${(!gameOver && gameStarted) ? " game-message" : ""}`}>
+            {(!gameStarted || gameOver) && !gameSaved && message}
+            {!gameOver && gameStarted && <GameMessage />}
+            {gameSaved && "Game saved successfully!"}
         </div>
     )
 }

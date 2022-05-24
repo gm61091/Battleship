@@ -4,9 +4,18 @@ export const startGame = () => ({
     type: types.START_GAME
 })
 
+export const loadGame = savedGame => ({
+    type: types.LOAD_GAME,
+    data: savedGame
+})
+
 export const deleteFromShipCoordinates = coordinate => ({
     type: types.DELETE_FROM_SHIP_COORDINATES,
     data: coordinate 
+})
+
+export const setComputerTurn = () => ({
+    type: types.SET_COMPUTER_TURN
 })
 
 export const nextComputerMove = () => ({
@@ -40,11 +49,27 @@ export const setMessage = message => ({
     type: types.SET_MESSAGE,
     data: message
 })
+
 export const userMessage = userMessage => ({
     type: types.USER_MESSAGE,
     data: userMessage
 })
+
 export const computerMessage = computerMessage => ({
     type: types.COMPUTER_MESSAGE,
     data: computerMessage
+})
+
+export const addToSunkShips = id => ({
+    type: types.ADD_TO_SUNK_SHIPS,
+    data: id
+})
+
+export const setGameSaved = () => ({
+    type: types.SET_GAME_SAVED
+})
+
+export const addToUserSelections = id => ({
+    type: types.ADD_TO_USER_SELECTIONS,
+    data: id
 })

@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
-import "./GridSquare.css";
 import { useSelector, useDispatch } from "react-redux";
+
 import { modifySelectedSquares, updateLastActiveSquare, updateShipLocations, deleteShipLength } from "../actions/gameStartActions";
 import { updateShipCoordinates, updateShipIndex, deleteUserShipCoordinate, computerMessage, updateLastHit } from "../actions/gamePlayActions";
 import convertSquareId from "../utils/convertSquareId"
+import "./GridSquare.css";
+
 const GridSquare = ({ id, row, col }) => {
 
     const dispatch = useDispatch();
     const { shipLength, selectedSquares, shipOrientation, shipLocations, lastActiveSquare } = useSelector(state => state.gameStart);
-    const { gameStarted, coordinatesPicked } = useSelector(state => state.gamePlay);
+    const { gameStarted, coordinatesPicked, shipCoordinates } = useSelector(state => state.gamePlay);
     const [highlighted, setHighlighted] = useState("");
     const [selected, setSelected] = useState("");
     const [pickedPreviously, setPickedPreviously] = useState(false);
@@ -82,7 +84,14 @@ const GridSquare = ({ id, row, col }) => {
         if (!pickedPreviously && id in coordinatesPicked) {
             setPickedPreviously(true);
             if (selected) {
-                dispatch(computerMessage(`${convertSquareId(id)} - DIRECT HIT!`))
+                let shipSunk = false;
+                for (const ship of shipCoordinates) {
+                    if (ship.length === 1 && ship[0] === id) {
+                        shipSunk = true;
+                        dispatch(computerMessage(`${convertSquareId(id)} - SHIP SUNK!`));
+                    }
+                }
+                if (!shipSunk) dispatch(computerMessage(`${convertSquareId(id)} - DIRECT HIT!`))
                 dispatch(updateShipIndex(id));
                 dispatch(deleteUserShipCoordinate(id));
             } else {
@@ -98,7 +107,7 @@ const GridSquare = ({ id, row, col }) => {
 
     return (
         <div 
-            className={`grid-square${highlighted}${selected}`} 
+            className={`grid-square${!gameStarted ? highlighted : ""}${selected}`} 
             onMouseEnter={handleHover} 
             onClick={handleClick}
             style={gameStarted ? { cursor: "default" } : { cursor: "pointer" }}
