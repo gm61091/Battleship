@@ -42,12 +42,14 @@
 .message-box {
     height: 18vh;
     border: black solid 2px;
+    background-color: rgba(189, 189, 189, 0.553);
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.5rem;
+    font-size: 2rem;
+    font-weight: 600;
+    color: white;
     color: rgb(71, 69, 69);
-    border: black solid 1px;
 }
 
 .game-btns {
@@ -56,3 +58,4 @@
     display: flex;
     justify-content: center;
 }
+

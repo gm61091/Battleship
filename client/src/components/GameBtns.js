@@ -42,31 +42,38 @@ const GameBtns = () => {
         <div className="game-btns mt-3">
             {!gameStarted &&
                 <>
-                    <Button variant="primary" onClick={() => dispatch(modifyShipOrientation())}>
-                        {shipOrientation === "vertical" ? "Horizontal" : "Vertical"}
-                    </Button>
-                    <Button variant="primary mx-3" onClick={() => dispatch(resetGameBoard())}>
+                    {shipLengths.length !== 0 && 
+                        <Button variant="primary" size="lg" onClick={() => dispatch(modifyShipOrientation())}>
+                            {shipOrientation === "vertical" ? "Horizontal" : "Vertical"}
+                        </Button>
+                    }
+                    <Button variant="primary mx-3" size="lg" onClick={() => dispatch(resetGameBoard())}>
                         Reset Board
                     </Button>
                     {savedGame && 
-                        <Button variant="primary" onClick={() => dispatch(loadGame(JSON.parse(savedGame)))}>
+                        <Button variant="primary" size="lg" onClick={() => dispatch(loadGame(JSON.parse(savedGame)))}>
                             Load Game
                         </Button>
                     }
                 </>
             }
             {!shipLengths.length && !gameStarted &&
-                <Button variant="primary mx-3" onClick={handleStartGame}>
+                <Button variant="primary mx-3" size="lg" onClick={handleStartGame}>
                     Start Game
                 </Button>
             }
             {gameStarted && !gameOver &&
-                <Button variant="primary mx-3" onClick={handleSave}>
-                    Save Game
-                </Button>
+                <>
+                    <Button variant="primary" size="lg" onClick={handleSave}>
+                        Save Game
+                    </Button>
+                    <Button variant="primary ms-3" size="lg" onClick={() => dispatch(resetGame())}>
+                        Reset Game
+                    </Button>
+                </>
             }
             {gameOver &&
-                <Button variant="primary mx-3" onClick={() => dispatch(resetGame())}>
+                <Button variant="primary" size="lg" onClick={() => dispatch(resetGame())}>
                     Reset Game
                 </Button>
             }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { modifySelectedSquares, updateLastActiveSquare, updateShipLocations, deleteShipLength } from "../actions/gameStartActions";
-import { updateShipCoordinates, updateShipIndex, deleteUserShipCoordinate, computerMessage, updateLastHit } from "../actions/gamePlayActions";
+import { updateShipCoordinates, updateShipIndex, deleteUserShipCoordinate, computerMessage, updateLastHit, addToComputerSunkShips } from "../actions/gamePlayActions";
 import convertSquareId from "../utils/convertSquareId"
 import "./GridSquare.css";
 
@@ -10,7 +10,7 @@ const GridSquare = ({ id, row, col }) => {
 
     const dispatch = useDispatch();
     const { shipLength, selectedSquares, shipOrientation, shipLocations, lastActiveSquare } = useSelector(state => state.gameStart);
-    const { gameStarted, coordinatesPicked, shipCoordinates } = useSelector(state => state.gamePlay);
+    const { gameStarted, coordinatesPicked, shipCoordinates, computerSunkShips } = useSelector(state => state.gamePlay);
     const [highlighted, setHighlighted] = useState("");
     const [selected, setSelected] = useState("");
     const [pickedPreviously, setPickedPreviously] = useState(false);
@@ -80,7 +80,7 @@ const GridSquare = ({ id, row, col }) => {
         id in shipLocations ? setSelected(" selected") : setSelected("");
     }, [shipLocations])
 
-    useEffect(() => {
+    useEffect(() => {  
         if (!pickedPreviously && id in coordinatesPicked) {
             setPickedPreviously(true);
             if (selected) {
@@ -88,14 +88,15 @@ const GridSquare = ({ id, row, col }) => {
                 for (const ship of shipCoordinates) {
                     if (ship.length === 1 && ship[0] === id) {
                         shipSunk = true;
-                        dispatch(computerMessage(`${convertSquareId(id)} - SHIP SUNK!`));
+                        dispatch(computerMessage(`${convertSquareId(id)} SHIP SUNK!`));
+                        dispatch(addToComputerSunkShips(id));
                     }
                 }
-                if (!shipSunk) dispatch(computerMessage(`${convertSquareId(id)} - DIRECT HIT!`))
+                if (!shipSunk) dispatch(computerMessage(`${convertSquareId(id)} DIRECT HIT!`))
                 dispatch(updateShipIndex(id));
                 dispatch(deleteUserShipCoordinate(id));
             } else {
-                dispatch(computerMessage(`${convertSquareId(id)} - TORPEDO MISSED!`))
+                dispatch(computerMessage(`${convertSquareId(id)} TORPEDO MISSED!`))
                 dispatch(updateLastHit());
             } 
         } 
@@ -105,9 +106,13 @@ const GridSquare = ({ id, row, col }) => {
         if (id === lastActiveSquare) handleHover();
     }, [shipOrientation])
 
+    useEffect(() => {
+        setPickedPreviously(false)
+    }, [gameStarted])
+
     return (
         <div 
-            className={`grid-square${!gameStarted ? highlighted : ""}${selected}`}
+            className={`grid-square${!gameStarted ? highlighted : ""}${selected}${id in computerSunkShips ? " sunk" : ""}`}
             onMouseEnter={handleHover}
             onClick={handleClick}
             style={gameStarted ? { cursor: "default" } : { cursor: "pointer" }}
