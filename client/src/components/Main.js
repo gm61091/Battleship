@@ -32,10 +32,6 @@ const Main = () => {
         }
     }, [gameOver])
 
-    useEffect(() => {
-        console.log(hitList);
-    }, [hitList])
-
     return (
         <div className="background">
             <Header />
