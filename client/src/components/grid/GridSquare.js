@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { modifySelectedSquares, updateLastActiveSquare, updateShipLocations, deleteShipLength } from "../actions/gameStartActions";
-import { updateShipCoordinates, updateShipIndex, deleteUserShipCoordinate, computerMessage, updateLastHit, addToComputerSunkShips } from "../actions/gamePlayActions";
-import convertSquareId from "../utils/convertSquareId"
+import { modifySelectedSquares, updateLastActiveSquare, updateShipLocations, deleteShipLength } from "../../actions/gameStartActions";
+import { updateShipCoordinates, updateShipIndex, deleteUserShipCoordinate, computerMessage, updateLastHit, addToComputerSunkShips } from "../../actions/gamePlayActions";
+import convertSquareId from "../../utils/convertSquareId"
 import "./GridSquare.css";
 
 const GridSquare = ({ id, row, col }) => {

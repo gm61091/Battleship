@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-import capitalizeName from "../utils/capitalizeName";
+import capitalizeName from "../../utils/capitalizeName";
 
 const GameMessage = () => {
 
