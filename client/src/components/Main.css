@@ -42,10 +42,12 @@
 .message-box {
     height: 27.5vh;
     border: black solid 2px;
+    background-color: rgba(189, 189, 189, 0.553);
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.5rem;
+    font-size: 2rem;
+    font-weight: 600;
     color: white;
 }
 

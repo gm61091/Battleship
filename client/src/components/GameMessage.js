@@ -10,11 +10,33 @@ const GameMessage = () => {
 
     return (
         <>
-            <p>
-                {capitalizeName(name)}: {userMessage}
+            <p>{capitalizeName(name)}: {userMessage[1] === "l" ? 
+                userMessage : 
+                userMessage[2] === "0" ? 
+                    <>
+                        <span className="id-span">{userMessage.slice(0, 3)}</span>
+                        {userMessage.slice(3)}
+                    </>
+                    :
+                    <>
+                        <span className="id-span">{userMessage.slice(0, 2)}</span>
+                        {userMessage.slice(2)}
+                    </>
+                }
             </p>
-            <p>
-                Computer: {computerMessage}
+            <p>Computer: {computerMessage[1] === "o" || computerMessage === "" ? 
+                computerMessage : 
+                computerMessage[2] === "0" ? 
+                    <>
+                        <span className="id-span">{computerMessage.slice(0, 3)}</span>
+                        {computerMessage.slice(3)}
+                    </>
+                    :
+                    <>
+                        <span className="id-span">{computerMessage.slice(0, 2)}</span>
+                        {computerMessage.slice(2)}
+                    </>
+                }
             </p>
         </>
           

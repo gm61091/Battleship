@@ -21,15 +21,15 @@ const CompGridSquare = ({ id }) => {
                 for (const ship of computerShipCoordinates) {
                     if (ship.length === 1 && ship[0] === id) {
                         shipSunk = true;
-                        dispatch(userMessage(`${convertSquareId(id)} - SHIP SUNK!`));
+                        dispatch(userMessage(`${convertSquareId(id)} SHIP SUNK!`));
                         dispatch(addToSunkShips(id));
                     }
                 }
-                if (!shipSunk) dispatch(userMessage(`${convertSquareId(id)} - DIRECT HIT!`))
+                if (!shipSunk) dispatch(userMessage(`${convertSquareId(id)} DIRECT HIT!`))
                 dispatch(deleteFromShipCoordinates(id));
             } else {   
                 setStatus("miss");
-                dispatch(userMessage(`${convertSquareId(id)} - TORPEDO MISSED!`));
+                dispatch(userMessage(`${convertSquareId(id)} TORPEDO MISSED!`));
             }
             setTimeout(() => {
                 dispatch(nextComputerMove());

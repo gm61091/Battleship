@@ -65,6 +65,11 @@ export const addToSunkShips = id => ({
     data: id
 })
 
+export const addToComputerSunkShips = id => ({
+    type: types.ADD_TO_COMPUTER_SUNK_SHIPS,
+    data: id
+})
+
 export const setGameSaved = () => ({
     type: types.SET_GAME_SAVED
 })
