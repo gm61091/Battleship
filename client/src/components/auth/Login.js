@@ -9,6 +9,8 @@ import SubmitBtn from "./SubmitBtn";
 import { addToken } from "../../actions/authActions";
 import { loadUserInfo } from "../../actions/userActions";
 import "./Auth.css"
+import Header from "../../layout/Header";
+import Footer from "../../layout/Footer";
 
 const Login = () => {
 
@@ -46,28 +48,37 @@ const Login = () => {
     }
 
     return (
-        <div className="form-container background">
-            <Form className="login-form rounded shadow p-3">
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Email address</Form.Label>
-                    <Form.Control type="text" placeholder="Enter email" value={email} onChange={e => setEmail(e.target.value)} />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
-                </Form.Group>
-                {message && <ErrorMessage message={message} />}
-                <SubmitBtn
-                    text="Log In"
-                    message={message}
-                    handleClick={handleSubmit}
-                />
-                <div>
-                    <span>Don't have an account? </span>
-                    <Link to="/register">Register here</Link>
-                </div>
-            </Form>
+        <div className="background">
+            <div className="header">
+                <Header style={{fontSize: '58px'}}/>
+            </div>
+            <div className="form-container">
+                <Form className="login-form rounded shadow p-3">
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Label>Email address</Form.Label>
+                        <Form.Control type="text" placeholder="Enter email" value={email} onChange={e => setEmail(e.target.value)} />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
+                    </Form.Group>
+                    {message && <ErrorMessage message={message} />}
+                    <SubmitBtn
+                        text="Log In"
+                        message={message}
+                        handleClick={handleSubmit}
+                    />
+                    <div>
+                        <span>Don't have an account? </span>
+                        <Link to="/register">Register here</Link>
+                    </div>
+                </Form>
+            </div>
+            <div className="footer">
+                <Footer />
+            </div>
         </div>
+
     )
 }
 

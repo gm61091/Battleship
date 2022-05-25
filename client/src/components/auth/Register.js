@@ -6,6 +6,8 @@ import Form from "react-bootstrap/Form";
 import SubmitBtn from "./SubmitBtn";
 import ErrorMessage from "./ErrorMessage";
 import "./Auth.css"
+import Header from "../../layout/Header";
+import Footer from "../../layout/Footer";
 
 const Register = () => {
 
@@ -46,32 +48,42 @@ const Register = () => {
     }
 
     return (
-        <div className="form-container background">
-            <Form className="login-form rounded shadow p-3">
-                <Form.Group className="mb-3" controlId="formBasicName">
-                    <Form.Label>Name</Form.Label>
-                    <Form.Control type="text" placeholder="Enter name" value={name} onChange={e => setName(e.target.value)} />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Email address</Form.Label>
-                    <Form.Control type="text" placeholder="Enter email" value={email} onChange={e => setEmail(e.target.value)} />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formConfirmPassword">
-                    <Form.Label>Confirm Password</Form.Label>
-                    <Form.Control type="password" placeholder="Password" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} />
-                </Form.Group>
-                {message && <ErrorMessage message={message} />}
-                <SubmitBtn
-                    text="Register"
-                    message={message}
-                    handleClick={handleSubmit}
-                />
-            </Form>
+        
+        <div className="background">
+            <div className="header">
+            <Header style={{fontSize: '58px'}}/>
+            </div>
+            <div className="form-container">
+                <Form className="login-form rounded shadow p-3">
+                    <Form.Group className="mb-3" controlId="formBasicName">
+                        <Form.Label>Name</Form.Label>
+                        <Form.Control type="text" placeholder="Enter name" value={name} onChange={e => setName(e.target.value)} />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Label>Email address</Form.Label>
+                        <Form.Control type="text" placeholder="Enter email" value={email} onChange={e => setEmail(e.target.value)} />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="formConfirmPassword">
+                        <Form.Label>Confirm Password</Form.Label>
+                        <Form.Control type="password" placeholder="Password" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} />
+                    </Form.Group>
+                    {message && <ErrorMessage message={message} />}
+                    <SubmitBtn
+                        text="Register"
+                        message={message}
+                        handleClick={handleSubmit}
+                    />
+                </Form>
+            </div>
+            <div className="footer">
+                <Footer />
+            </div>
         </div>
+        
     )
 }
 
