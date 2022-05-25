@@ -10,7 +10,7 @@ const GameMessage = () => {
 
     return (
         <>
-            <p>{capitalizeName(name)}: {userMessage[1] === "l" ? 
+            <p className="mb-0">{capitalizeName(name)}: {userMessage[1] === "l" ? 
                 userMessage : 
                 userMessage[2] === "0" ? 
                     <>
@@ -24,7 +24,7 @@ const GameMessage = () => {
                     </>
                 }
             </p>
-            <p>Computer: {computerMessage[1] === "o" || computerMessage === "" ? 
+            <p className="mb-0">Computer: {computerMessage[1] === "o" || computerMessage === "" ? 
                 computerMessage : 
                 computerMessage[2] === "0" ? 
                     <>
