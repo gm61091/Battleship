@@ -1,11 +1,30 @@
 .form-container {
-    height: 100vh;
+    height: 80vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    
+    
 }
 
 .login-form {
     width: 320px;
-    background-color: rgb(231, 228, 228);
+    background-color: rgba(189, 189, 189, 0.553);
 }
+
+.header {
+    height: 5vh;
+    padding-top: 65px;
+    padding-bottom: 10px;
+}
+
+.footer {
+    height: 5vh;
+}
+
+.background {
+    background-image: url("../../../public/images/battleshipImage.jpeg");
+    background-repeat: no-repeat;
+    
+  }
+

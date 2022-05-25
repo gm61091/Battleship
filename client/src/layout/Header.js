@@ -1,10 +1,11 @@
 import React from "react";
 import "./Header.css"
 
-const Header = () => {
+const Header = ({style}) => {
     return (
         <>
-            <h1 className="header-txt">Battleship</h1>
+            <h1 id="header-txt" style={style}>Battleship</h1>
+            
         </>
     )
 }
