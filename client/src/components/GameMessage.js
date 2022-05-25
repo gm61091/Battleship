@@ -14,12 +14,12 @@ const GameMessage = () => {
                 userMessage : 
                 userMessage[2] === "0" ? 
                     <>
-                        <span className="id-span">{userMessage.slice(0, 3)}</span>
+                        <span className="number-span">{userMessage.slice(0, 3)}</span>
                         {userMessage.slice(3)}
                     </>
                     :
                     <>
-                        <span className="id-span">{userMessage.slice(0, 2)}</span>
+                        <span className="number-span">{userMessage.slice(0, 2)}</span>
                         {userMessage.slice(2)}
                     </>
                 }
@@ -28,12 +28,12 @@ const GameMessage = () => {
                 computerMessage : 
                 computerMessage[2] === "0" ? 
                     <>
-                        <span className="id-span">{computerMessage.slice(0, 3)}</span>
+                        <span className="number-span">{computerMessage.slice(0, 3)}</span>
                         {computerMessage.slice(3)}
                     </>
                     :
                     <>
-                        <span className="id-span">{computerMessage.slice(0, 2)}</span>
+                        <span className="number-span">{computerMessage.slice(0, 2)}</span>
                         {computerMessage.slice(2)}
                     </>
                 }

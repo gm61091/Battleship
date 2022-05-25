@@ -10,7 +10,6 @@ const ComputerBoard = ({ gridArray }) => {
     const { shipLengths } = useSelector(state => state.gameStart);
 
     return (
-        
         <div className={`${gameStarted ? "computer-board" : "ship-yard"} mx-3`}>
             {!gameStarted && shipLengths.map((element, index)=>(
                 <Ship

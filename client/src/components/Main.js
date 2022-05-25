@@ -44,7 +44,6 @@ const Main = () => {
             </div>
             <GameBtns />
             <Footer />
-            
         </div>
     )
 }
