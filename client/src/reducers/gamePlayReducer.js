@@ -2,8 +2,8 @@ import types from "../actions";
 import generateComputerShipLocations from "../utils/generateComputerShipLocations";
 import determineNextIndex from "../utils/determineNextIndex";
 import generateGridIndices from "../utils/generateGridIndices";
-import selectRandomIndex from "../utils/selectRandomIndex";
 import determineShipOrientation from "../utils/determineShipOrientation";
+import selectRandomSquare from "../utils/selectRandomSquare";
 
 const gamePlayReducer = (state, action) => {
     if (!state) {
@@ -27,6 +27,7 @@ const gamePlayReducer = (state, action) => {
             sunkShips: {},
             computerSunkShips: {},
             computerStartingCoordinates: [],
+            hitList: [],
             gameSaved: false
         }
     }
@@ -63,9 +64,9 @@ const gamePlayReducer = (state, action) => {
                 computerTurn: true
             }
         case types.NEXT_COMPUTER_MOVE:
-            console.log(state.shipIndex, state.lastHit, state.targetShipOrientation)
             if (!state.gameOver) {
                 let [selectedGridIndex, modifyShipOrientation, modifyShipIndex] = [null, null, null];
+                if (!state.shipIndex && !state.lastHit && state.hitList.length > 0) state.shipIndex = state.hitList[0];
                 if (state.shipIndex) {
                     selectedGridIndex = determineNextIndex(state.shipIndex, state.lastHit, state.targetShipOrientation, state.coordinatesPicked);
                     if (!selectedGridIndex) {
@@ -73,10 +74,10 @@ const gamePlayReducer = (state, action) => {
                         selectedGridIndex = determineNextIndex(state.shipIndex, "", "", state.coordinatesPicked);
                         if (!selectedGridIndex) {
                             modifyShipIndex = true;
-                            selectedGridIndex = selectRandomIndex(state.gridIndices);
+                            selectedGridIndex = selectRandomSquare(state.gridIndices, state.coordinatesPicked);
                         }
                     }
-                } else selectedGridIndex = selectRandomIndex(state.gridIndices);
+                } else selectedGridIndex = selectRandomSquare(state.gridIndices, state.coordinatesPicked);
                 return {
                     ...state,
                     targetShipOrientation: modifyShipOrientation ? "" : state.targetShipOrientation,
@@ -100,7 +101,8 @@ const gamePlayReducer = (state, action) => {
                 ...state,
                 shipIndex: modifyShipIdx ? action.data : state.shipIndex,
                 targetShipOrientation: shipOrientation || state.targetShipOrientation,
-                lastHit: lastHit
+                lastHit: lastHit,
+                hitList: action.data in state.computerSunkShips ? state.hitList : state.hitList.concat([action.data])
             }
         case types.UPDATE_LAST_HIT:
             return {
@@ -149,7 +151,8 @@ const gamePlayReducer = (state, action) => {
                 computerTurn: false,
                 sunkShips: {},
                 computerSunkShips: {},
-                computerStartingCoordinates: []
+                computerStartingCoordinates: [],
+                hitList: []
             }
         case types.SET_MESSAGE:
             return {
@@ -200,7 +203,8 @@ const gamePlayReducer = (state, action) => {
                 computerSunkShips: {
                     ...state.computerSunkShips,
                     ...sunkShipIds
-                }
+                },
+                hitList: state.hitList.filter(coordinate => !(coordinate in sunkShipIds))
             }
         case types.SET_GAME_SAVED:
             return {

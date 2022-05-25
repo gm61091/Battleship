@@ -17,7 +17,7 @@ const Main = () => {
     const gridArray = new Array(10).fill((new Array(10).fill(0)));
 
     const dispatch = useDispatch();
-    const { gameOver, shipCoordinates } = useSelector(state => state.gamePlay);
+    const { gameOver, shipCoordinates, hitList } = useSelector(state => state.gamePlay);
     const { wins, losses, email } = useSelector(state => state.user);
 
     useEffect(() => {
@@ -31,6 +31,10 @@ const Main = () => {
             dispatch(updateLosses(losses + 1));
         }
     }, [gameOver])
+
+    useEffect(() => {
+        console.log(hitList);
+    }, [hitList])
 
     return (
         <div className="background">
