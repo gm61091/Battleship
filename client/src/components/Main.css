@@ -32,7 +32,7 @@
 }
 
 .ship-yard {
-    height: 45vh;
+    height: 60vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -40,13 +40,13 @@
 }
 
 .message-box {
-    height: 27.5vh;
+    height: 18vh;
     border: black solid 2px;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 1.5rem;
-    color: white;
+    color: rgb(71, 69, 69);
     border: black solid 1px;
 }
 

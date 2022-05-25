@@ -10,10 +10,10 @@ const GameMessage = () => {
 
     return (
         <>
-            <p>
+            <p className="mb-0">
                 {capitalizeName(name)}: {userMessage}
             </p>
-            <p>
+            <p className="mb-0">
                 Computer: {computerMessage}
             </p>
         </>
