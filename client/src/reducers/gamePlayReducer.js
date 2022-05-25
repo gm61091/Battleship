@@ -78,7 +78,6 @@ const gamePlayReducer = (state, action) => {
                         }
                     }
                 } else selectedGridIndex = selectRandomSquare(state.gridIndices, state.coordinatesPicked, state.shipCoordinates);
-                console.log(selectedGridIndex);
                 return {
                     ...state,
                     targetShipOrientation: modifyShipOrientation ? "" : state.targetShipOrientation,

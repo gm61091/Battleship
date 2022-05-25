@@ -31,7 +31,6 @@ const determineSmallestShip = ships => {
 const selectRandomSquare = (gridIndices, picked, ships) => {
     const smallestShip = determineSmallestShip(ships);
     let square = selectRandomElement(gridIndices);
-    console.log(square);
     while (neighbors(square, picked, smallestShip - 1)) {
         square = selectRandomElement(gridIndices);
     }
