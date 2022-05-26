@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteFromShipCoordinates, nextComputerMove, userMessage, setComputerTurn, addToSunkShips, addToUserSelections } from "../actions/gamePlayActions";
+import { deleteFromShipCoordinates, nextComputerMove, userMessage, setComputerTurn, addToSunkShips, addToUserSelections } from "../../actions/gamePlayActions";
 import "./GridSquare.css"
-import convertSquareId from "../utils/convertSquareId"
+import convertSquareId from "../../utils/convertSquareId"
 
 const CompGridSquare = ({ id }) => {
 

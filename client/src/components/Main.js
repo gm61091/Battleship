@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import PlayerBoard from "./PlayerBoard";
-import ComputerBoard from "./ComputerBoard";
+import PlayerBoard from "./grid/PlayerBoard";
+import ComputerBoard from "./grid/ComputerBoard";
 import Footer from "../layout/Footer";
 import Header from "../layout/Header";
-import MessageBox from "./MessageBox";
+import MessageBox from "./message/MessageBox";
 import GameBtns from "./GameBtns";
 import { updateWins, updateLosses } from "../actions/userActions";
 import { setMessage } from "../actions/gamePlayActions";
@@ -44,7 +44,6 @@ const Main = () => {
             </div>
             <GameBtns />
             <Footer />
-            
         </div>
     )
 }

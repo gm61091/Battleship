@@ -1,4 +1,5 @@
 import React from "react";
+
 import GridSquare from "./GridSquare";
 
 const PlayerBoard = ({ gridArray }) => {
