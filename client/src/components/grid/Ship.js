@@ -1,7 +1,8 @@
 import React from "react";
-import "./GridSquare.css";
-import { modifyShipLength } from "../actions/gameStartActions";
 import { useDispatch } from "react-redux";
+
+import { modifyShipLength } from "../../actions/gameStartActions";
+import "./GridSquare.css";
 
 const Ship = (props) => {
 

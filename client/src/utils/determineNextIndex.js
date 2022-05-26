@@ -1,12 +1,5 @@
-import selectRandomIndex from "./selectRandomIndex"
-
-const up = gridIndex => `${parseInt(gridIndex[0]) - 1}${gridIndex[1]}`;
-
-const down = gridIndex => `${parseInt(gridIndex[0]) + 1}${gridIndex[1]}`;
-
-const right = gridIndex => `${gridIndex[0]}${parseInt(gridIndex[1]) + 1}`;
-
-const left = gridIndex => `${gridIndex[0]}${parseInt(gridIndex[1]) - 1}`;
+import selectRandomElement from "./selectRandomElement";
+import { up, down, right, left } from "./matrixDirections";
 
 const determineNextIndex = (shipIdx, lastHit, shipOrientation, coordinatesPicked) => {
     const possibilities = [];
@@ -43,7 +36,7 @@ const determineNextIndex = (shipIdx, lastHit, shipOrientation, coordinatesPicked
     }
     if (possibilities.length === 0 && lastHit) return determineNextIndex(shipIdx, "", shipOrientation, coordinatesPicked);
     else if (possibilities.length === 0 && shipOrientation) return "";
-    else return selectRandomIndex(possibilities);
+    else return selectRandomElement(possibilities);
 }
 
 export default determineNextIndex

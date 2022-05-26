@@ -1,3 +1,5 @@
+import { up, down, right, left } from "./matrixDirections";
+
 const generateGridIdx = length => {
     const gridStartIdx = Math.floor(Math.random() * (10 - length + 1));
     const gridIdx = Math.floor(Math.random() * 10);
@@ -12,8 +14,8 @@ const generateComputerShipLocations = () => {
     for (let idx = 0; idx < shipLengths.length; idx++) {
         const length = shipLengths[idx];
         let shipLocations = [];
-        let overlapsAnotherShip = true;
-        while (overlapsAnotherShip) {   
+        let touchesAnotherShip = true;
+        while (touchesAnotherShip) {   
             shipLocations = [];
             const orientationIdx = Math.floor(Math.random() * 2);
             if (orientation[orientationIdx] === "horizontal") {
@@ -27,10 +29,10 @@ const generateComputerShipLocations = () => {
                     shipLocations.push(`${rowStartIdx + count}${colIdx}`);
                 }
             }
-            overlapsAnotherShip = false;
+            touchesAnotherShip = false;
             for (const location of shipLocations) {
-                if (location in computerShipLocations) {
-                    overlapsAnotherShip = true;
+                if (location in computerShipLocations || up(location) in computerShipLocations || down(location) in computerShipLocations || right(location) in computerShipLocations || left(location) in computerShipLocations) {
+                    touchesAnotherShip = true;
                     break;
                 } 
             }

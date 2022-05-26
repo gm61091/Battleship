@@ -35,21 +35,16 @@
     height: 60vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: left;    
+    justify-content: flex-start;
+    align-items: left;  
 }
 
-.message-box {
-    height: 18vh;
-    border: black solid 2px;
-    background-color: rgba(189, 189, 189, 0.553);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 2rem;
-    font-weight: 600;
+.ship-yard-title {
+    text-align: center;
     color: white;
-    color: rgb(71, 69, 69);
+    font-family: 'Cinzel', serif;
+    font-size: 2.5rem;  
+    margin-bottom: 1rem; 
 }
 
 .game-btns {
