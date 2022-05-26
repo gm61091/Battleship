@@ -35,8 +35,16 @@
     height: 60vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: left;    
+    justify-content: flex-start;
+    align-items: left;  
+}
+
+.ship-yard-title {
+    text-align: center;
+    color: white;
+    font-family: 'Cinzel', serif;
+    font-size: 2.5rem;  
+    margin-bottom: 1rem; 
 }
 
 .game-btns {

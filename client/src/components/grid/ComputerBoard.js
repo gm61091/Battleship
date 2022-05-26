@@ -10,22 +10,25 @@ const ComputerBoard = ({ gridArray }) => {
     const { shipLengths } = useSelector(state => state.gameStart);
 
     return (
-        <div className={`${gameStarted ? "computer-board" : "ship-yard"} mx-3`}>
-            {!gameStarted && shipLengths.map((element, index)=>(
-                <Ship
-                    key={index} 
-                    shipLength={element}
-                />
-            ))}
-            {gameStarted && gridArray.map((row, rowIndex) => (
-                row.map((col, colIndex) => (
-                    <CompGridSquare 
-                        key={`${rowIndex}${colIndex}`} 
-                        id={`${rowIndex}${colIndex}`} 
+        <>
+            {!gameStarted && <h2 className="ship-yard-title">Ship Yard</h2>}
+            <div className={`${gameStarted ? "computer-board" : "ship-yard"} mx-3`}>
+                {!gameStarted && shipLengths.map((element, index)=>(
+                    <Ship
+                        key={index} 
+                        shipLength={element}
                     />
-                ))
-            ))}
-        </div>
+                ))}
+                {gameStarted && gridArray.map((row, rowIndex) => (
+                    row.map((col, colIndex) => (
+                        <CompGridSquare 
+                            key={`${rowIndex}${colIndex}`} 
+                            id={`${rowIndex}${colIndex}`} 
+                        />
+                    ))
+                ))}
+            </div>
+        </>
     )
 }
 

@@ -37,4 +37,4 @@ const selectRandomSquare = (gridIndices, picked, ships) => {
     return square;
 }
 
-export default selectRandomSquare
+export default selectRandomSquare   

@@ -20,7 +20,7 @@ const MessageBox = () => {
                 {!gameOver && gameStarted && <GameMessage />}
                 {gameSaved && "Game saved successfully!"}
             </div>
-            <p className="mb-0 spacing">Wins: Losses:</p>
+            {(!gameStarted || gameOver) && <p className="mb-0 spacing">Wins: Losses:</p>}
         </div> 
     )
 }

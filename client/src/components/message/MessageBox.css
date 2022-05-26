@@ -11,7 +11,7 @@
     justify-content: center;
     flex-grow: 2;
     align-items: center;
-    font-size: 2rem;
+    font-size: 1.75rem;
     font-weight: 600;
     color: white;
 }
@@ -29,6 +29,7 @@
 
 .spacing {
     color: rgba(255, 255, 255, 0);
+    cursor: default;
 }
 
 .number-span {
