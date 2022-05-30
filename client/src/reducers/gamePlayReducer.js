@@ -56,7 +56,7 @@ const gamePlayReducer = (state, action) => {
             return {
                 ...state,
                 gameSaved: true,
-                gameOver: true
+                gameOver: false
             } 
         case types.DELETE_FROM_SHIP_COORDINATES:
             const newShipCoordinates = [];
