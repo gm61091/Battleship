@@ -20,7 +20,8 @@ router.post("/login", requireLogin, (req, res) => {
         wins: req.user.wins,
         losses: req.user.losses,
         name: req.user.name,
-        savedGame: req.user.savedGame
+        savedGame: req.user.savedGame,
+        email: req.user.email
     })
 })
 

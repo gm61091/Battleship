@@ -17,15 +17,15 @@ const Main = () => {
     const gridArray = new Array(10).fill((new Array(10).fill(0)));
 
     const dispatch = useDispatch();
-    const { gameOver, shipCoordinates } = useSelector(state => state.gamePlay);
+    const { gameOver, shipCoordinates, computerShipCoordinates } = useSelector(state => state.gamePlay);
     const { wins, losses, email } = useSelector(state => state.user);
 
     useEffect(() => {
-        if (gameOver && shipCoordinates.length) {
+        if (gameOver && shipCoordinates.length && !computerShipCoordinates.length) {
             dispatch(setMessage("You win!"));
             updateUserWinsInDatabase(email, wins + 1);
             dispatch(updateWins(wins + 1));
-        } else if (gameOver) {
+        } else if (gameOver && !shipCoordinates.length && computerShipCoordinates.length) {
             dispatch(setMessage("You lose!"));
             updateUserLossesInDatabase(email, losses + 1);
             dispatch(updateLosses(losses + 1));

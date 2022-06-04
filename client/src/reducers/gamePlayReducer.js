@@ -56,7 +56,7 @@ const gamePlayReducer = (state, action) => {
             return {
                 ...state,
                 gameSaved: true,
-                gameOver: false
+                gameOver: true
             } 
         case types.DELETE_FROM_SHIP_COORDINATES:
             const newShipCoordinates = [];
@@ -129,8 +129,9 @@ const gamePlayReducer = (state, action) => {
                     gridIndices: state.gridIndices.filter(index => index !== selectedGridIndex),
                     computerTurn: false
                 }
+            } else {
+                return state
             }
-        
         case types.UPDATE_SHIP_COORDINATES:
             return {
                 ...state,
@@ -212,7 +213,6 @@ const gamePlayReducer = (state, action) => {
                 userMessage: "",
                 computerMessage: "",
                 gameSaved: false,
-                gameStarted: false,
                 userSelections: {},
                 startingShipCoordinates: [],
                 computerTurn: false,
@@ -223,7 +223,6 @@ const gamePlayReducer = (state, action) => {
             }
         default: 
             return state;
-            
     }
 }
 
