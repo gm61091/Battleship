@@ -19,7 +19,7 @@ This app is modeled after the classic game, Battleship. In this app, a user must
 
 ## Creators
 - James Riddle, Project Manager - Portfolio | [Github](https://github.com/jamescr757)
-- Dezarea Bryan, Technical Writer - Portfolio | [Github](https://github.com/DezSays)  
-- Gary Merriman, -insert title here- - Portfolio | [Github](https://github.com/gm61091) 
+- Dezarea Bryan, Technical Writer - [Portfolio](DezTheDev.netlify.com) | [Github](https://github.com/DezSays)  
+- Gary Merriman, Software Application Developer - Portfolio | [Github](https://github.com/gm61091) 
 
 
