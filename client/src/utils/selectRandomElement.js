@@ -1,6 +1,6 @@
-const selectRandomElement = array => {
-    const randomIndex = Math.floor(Math.random() * array.length);
-    return array[randomIndex];
-}
+const selectRandomElement = (array) => {
+  const randomIndex = Math.floor(Math.random() * array.length);
+  return array[randomIndex];
+};
 
 export default selectRandomElement;

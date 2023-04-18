@@ -1,9 +1,7 @@
 import React from "react";
 
 const ErrorMessage = ({ message }) => {
-    return (
-        <span className="message-span text-danger">{message}</span>
-    )
-}
+  return <span className="message-span text-danger">{message}</span>;
+};
 
-export default ErrorMessage
+export default ErrorMessage;

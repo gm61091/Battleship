@@ -4,21 +4,21 @@ import { addToken, addError } from "../actions/authActions";
 import { loadUserInfo } from "../actions/userActions";
 
 const checkToken = async () => {
-    if (localStorage.token) {
-      try {
-        const response = await axios.get("/protected", {
-          headers: {
-            "authorization": localStorage.token
-          }
-        })
-        if (response.data.isValid) {
-          store.dispatch(addToken(localStorage.token));
-          store.dispatch(loadUserInfo(response.data));
-        }
-      } catch (error) {
-        store.dispatch(addError(error));
+  if (localStorage.token) {
+    try {
+      const response = await axios.get("/protected", {
+        headers: {
+          authorization: localStorage.token,
+        },
+      });
+      if (response.data.isValid) {
+        store.dispatch(addToken(localStorage.token));
+        store.dispatch(loadUserInfo(response.data));
       }
+    } catch (error) {
+      store.dispatch(addError(error));
     }
   }
+};
 
 export default checkToken;
