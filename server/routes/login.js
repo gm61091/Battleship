@@ -9,20 +9,20 @@ require("../auth/passAuth");
 
 const requireLogin = passport.authenticate("local", { session: false });
 
-const generateToken = userRecord => {
-    const timestamp = new Date().getTime();
-    return jwt.encode({ sub: userRecord.id, iat: timestamp }, secretObj.secret)
-}
+const generateToken = (userRecord) => {
+  const timestamp = new Date().getTime();
+  return jwt.encode({ sub: userRecord.id, iat: timestamp }, secretObj.secret);
+};
 
 router.post("/login", requireLogin, (req, res) => {
-    res.json({
-        token: generateToken(req.user),
-        wins: req.user.wins,
-        losses: req.user.losses,
-        name: req.user.name,
-        savedGame: req.user.savedGame,
-        email: req.user.email
-    })
-})
+  res.json({
+    token: generateToken(req.user),
+    wins: req.user.wins,
+    losses: req.user.losses,
+    name: req.user.name,
+    savedGame: req.user.savedGame,
+    email: req.user.email,
+  });
+});
 
 module.exports = router;
