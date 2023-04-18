@@ -27,11 +27,6 @@ const localLogin = new LocalStrategy(
 
 passport.use(localLogin);
 
-/**
- * JWT Strategy
- * * check to see if token is valid
- */
-
 let jwtOptions = {
   jwtFromRequest: ExtractJwt.fromHeader("authorization"),
   secretOrKey: secretObj.secret,
@@ -39,25 +34,16 @@ let jwtOptions = {
 
 let jwtLogin = new JwtStrategy(jwtOptions, async (payload, done) => {
   try {
-    //check if user is in db
-
     let userID = payload.sub;
 
     let user = await db.User.findByPk(userID); //{}
 
-    //true - success
-
     if (user) {
-      return done(null, user); //place the user object on req.user
-
-      //req.user = {id, email, password}
+      return done(null, user);
     } else {
-      //else - error
       return done(null, false);
     }
   } catch (error) {
-    //error reading db
-
     return done(error);
   }
 });
