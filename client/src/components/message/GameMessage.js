@@ -1,3 +1,11 @@
+/**
+ * The GameMessage component displays messages from the user and computer during gameplay, with some
+ * conditional rendering for formatting.
+ * @returns The `GameMessage` component is returning two paragraphs of text, one for the user's message
+ * and one for the computer's message. The text is formatted based on the content of the messages and
+ * includes a `number-span` class for any numbers in the message. The `capitalizeName` function is used
+ * to capitalize the user's name. The component is using the `useSelector` hook from `
+ */
 import React from "react";
 import { useSelector } from "react-redux";
 

@@ -1,3 +1,8 @@
+/**
+ * The CompGridSquare component is a functional component that renders a square on the computer's game
+ * board and handles user clicks to determine if a ship has been hit or missed.
+ * @returns The `CompGridSquare` component is being returned.
+ */
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {

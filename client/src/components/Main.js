@@ -1,3 +1,8 @@
+/**
+ * The Main component renders the game board, message box, and game buttons, and updates the user's
+ * wins and losses in the database and Redux store based on the game outcome.
+ * @returns The Main component is being returned.
+ */
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 

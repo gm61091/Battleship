@@ -1,3 +1,8 @@
+/**
+ * This function generates random locations for computer ships on a game grid.
+ * @param length - The length of the ship being generated.
+ * @returns The function `generateComputerShipLocations` is returning an array with two elements:
+ */
 import { up, down, right, left } from "./matrixDirections";
 
 const generateGridIdx = (length) => {

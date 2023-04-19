@@ -1,3 +1,13 @@
+/**
+ * The gamePlayReducer function is a reducer that handles various actions related to the gameplay state
+ * of a battleship game.
+ * @param state - The current state of the game, which is an object containing various properties such
+ * as gameStarted, gameOver, computerTurn, gridIndices, userSelections, computerShipLocations,
+ * shipCoordinates, computerShipCoordinates, sunkShips, computerSunkShips, hitList, shipIndex, lastHit
+ * @param action - The action parameter is an object that contains information about the action being
+ * dispatched, including the type of action and any additional data needed to update the state.
+ * @returns The gamePlayReducer function is being returned as the default export of the module.
+ */
 import types from "../actions";
 import generateComputerShipLocations from "../utils/generateComputerShipLocations";
 import determineNextIndex from "../utils/determineNextIndex";

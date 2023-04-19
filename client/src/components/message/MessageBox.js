@@ -1,3 +1,7 @@
+/**
+ * The MessageBox component displays game messages and user records in a React app.
+ * @returns The MessageBox component is being returned.
+ */
 import React from "react";
 import { useSelector } from "react-redux";
 

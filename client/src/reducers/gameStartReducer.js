@@ -1,3 +1,13 @@
+/**
+ * This is a reducer function that handles various actions related to the game start state in a
+ * battleship game.
+ * @param state - The current state of the game, which is an object containing various properties such
+ * as shipLength, selectedSquares, shipOrientation, shipLocations, lastActiveSquare, and shipLengths.
+ * @param action - The action parameter is an object that contains information about the action being
+ * dispatched, including the type of action and any additional data needed to update the state.
+ * @returns The gameStartReducer function is returning an updated state object based on the action type
+ * and data passed in.
+ */
 import types from "../actions";
 
 const gameStartReducer = (state, action) => {

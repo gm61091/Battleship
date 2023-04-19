@@ -1,3 +1,13 @@
+/**
+ * This is a reducer function for managing the state of the computer's gameplay in a battleship game.
+ * @param state - The current state of the computer gameplay, which includes the grid indices,
+ * coordinates picked, ship index, last hit, target ship orientation, ship coordinates, and computer
+ * message.
+ * @param action - The action parameter is an object that describes the action being taken in the Redux
+ * store. It has a type property that indicates the type of action being taken, and may also have
+ * additional data properties that provide information needed to update the store.
+ * @returns The computerGamePlayReducer function is being returned as the default export of the module.
+ */
 import types from "../actions";
 import determineNextIndex from "../utils/determineNextIndex";
 import generateGridIndices from "../utils/generateGridIndices";

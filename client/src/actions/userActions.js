@@ -1,3 +1,8 @@
+/**
+ * This is a module that exports four functions to update user wins and losses, load user information,
+ * and save a game.
+ * @param wins - The number of wins a user has in a game.
+ */
 import types from "./index";
 
 export const updateWins = (wins) => ({

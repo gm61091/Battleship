@@ -1,3 +1,6 @@
+/**
+ * This function checks if there is a valid token in local storage and dispatches actions accordingly.
+ */
 import axios from "axios";
 import store from "../store";
 import { addToken, addError } from "../actions/authActions";

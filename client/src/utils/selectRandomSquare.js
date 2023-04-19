@@ -1,3 +1,10 @@
+/**
+ * This is a module that exports a function to select a random square on a grid that is not adjacent to
+ * any previously picked squares.
+ * @param index - The index parameter represents the current index (position) on a grid. It is used in
+ * the functions to check for neighboring squares and to select a random square.
+ * @param move - The number of squares a ship can move in any direction from its starting position.
+ */
 import selectRandomElement from "./selectRandomElement";
 import { up, down, right, left } from "./matrixDirections";
 

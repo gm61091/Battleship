@@ -1,3 +1,9 @@
+/**
+ * The function returns a React component that renders a player board using an array of grid squares.
+ * @returns The `PlayerBoard` component is being returned, which renders a `div` element with the class
+ * name "player-board" and contains multiple `GridSquare` components based on the `gridArray` prop
+ * passed to it.
+ */
 import React from "react";
 
 import GridSquare from "./GridSquare";

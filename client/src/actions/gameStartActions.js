@@ -1,3 +1,8 @@
+/**
+ * This is a module that exports several functions related to modifying and resetting game board and
+ * game state in a Battleship game.
+ * @param length - a number representing the length of a ship
+ */
 import types from "./index";
 
 export const modifyShipLength = (length) => ({

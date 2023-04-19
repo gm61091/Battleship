@@ -1,3 +1,8 @@
+/**
+ * The GridSquare component is a functional component that renders a single square on the game board
+ * and handles user interactions and updates to the game state.
+ * @returns The component GridSquare is being returned.
+ */
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 

@@ -1,3 +1,4 @@
+/* This is a basic setup for a Node.js server using the Express framework. */
 const express = require("express");
 const app = express();
 const db = require("./models");

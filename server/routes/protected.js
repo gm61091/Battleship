@@ -1,3 +1,7 @@
+/* This is a module exporting a router object that defines a protected route `/protected` that requires
+a valid JSON Web Token (JWT) to access. The route returns a JSON object containing user information
+such as wins, losses, name, email, and saved game. The JWT authentication is implemented using
+Passport.js middleware. */
 const express = require("express");
 const router = express.Router();
 const passport = require("passport");

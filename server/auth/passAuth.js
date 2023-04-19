@@ -1,3 +1,6 @@
+/* This code is setting up authentication strategies for a Node.js application using the Passport.js
+library. It is importing necessary modules such as `passport`, `LocalStrategy`, `JwtStrategy`,
+`ExtractJwt`, `bcrypt`, and database models. */
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const JwtStrategy = require("passport-jwt").Strategy;

@@ -1,3 +1,8 @@
+/**
+ * This is a React component that renders the computer board for a battleship game, including ships in
+ * the ship yard before the game starts and grid squares during the game.
+ * @returns The `ComputerBoard` component is being returned.
+ */
 import React from "react";
 import { useSelector } from "react-redux";
 

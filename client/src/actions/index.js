@@ -1,3 +1,7 @@
+/* This code defines a JavaScript object `types` that contains a set of constants used as action types
+in a Redux application. Each constant represents a specific action that can be dispatched to the
+Redux store. The constants are used to ensure consistency and avoid typos when dispatching actions.
+The object is then exported as the default export of the module. */
 const types = {
   ADD_TOKEN: "ADD_TOKEN",
   ADD_ERROR: "ADD_ERROR",

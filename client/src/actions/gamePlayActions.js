@@ -1,3 +1,6 @@
+/**
+ * This is a module that exports various action creator functions for a game application.
+ */
 import types from "./index";
 
 export const startGame = () => ({

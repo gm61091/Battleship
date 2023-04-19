@@ -1,3 +1,7 @@
+/* This is a JavaScript code that exports a Sequelize instance and its models. It connects to a
+database using the configuration file specified in `config/config.json`. It reads all the model
+files in the current directory and associates them with the Sequelize instance. Finally, it exports
+the Sequelize instance and its models as an object. */
 "use strict";
 
 const fs = require("fs");

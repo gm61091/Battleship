@@ -1,3 +1,9 @@
+/* This code exports a function that defines a Sequelize model for a User table in a database. The
+function takes two parameters: `sequelize` and `DataTypes`, which are used to define the data types
+and relationships between tables in the database. The `User` model has columns for `email`,
+`password`, `name`, `wins`, `losses`, and `savedGame`. The `freezeTableName` option ensures that the
+table name is not pluralized, and the `timestamps` option disables the default timestamps that
+Sequelize adds to each row. Finally, the function returns the `User` model. */
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define(
     "User",

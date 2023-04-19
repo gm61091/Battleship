@@ -1,3 +1,8 @@
+/**
+ * The GameBtns function is a React component that renders buttons for starting, saving, resetting, and
+ * loading a game, as well as modifying the ship orientation and resetting the game board.
+ * @returns A React functional component called `GameBtns` is being returned.
+ */
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "react-bootstrap/Button";

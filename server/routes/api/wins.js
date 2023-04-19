@@ -1,3 +1,4 @@
+/* This is a JavaScript code that defines a router for updating a user's wins in a database. */
 const express = require("express");
 const router = express.Router();
 const db = require("../../models");

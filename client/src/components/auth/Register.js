@@ -1,3 +1,8 @@
+/**
+ * The Register function is a React component that handles user registration by sending a POST request
+ * to the server and displaying error messages if necessary.
+ * @returns The Register component is being returned, which contains a form for user registration.
+ */
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";

@@ -1,3 +1,8 @@
+/**
+ * This is a React component for a login form that handles user input validation and authentication
+ * using axios and Redux.
+ * @returns The Login component is being returned.
+ */
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
