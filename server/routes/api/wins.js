@@ -18,6 +18,7 @@ router.put("/:email/:updatedWins", async (req, res) => {
     res.status(200).end();
   } catch (error) {
     console.log(error);
+    res.json('We apologize, but an error has occurred.')
   }
 });
 
