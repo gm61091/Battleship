@@ -1,0 +1,1 @@
+Initializing config folder to be used with deployment.
