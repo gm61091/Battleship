@@ -8,9 +8,9 @@
 import axios from "axios";
 
 export const updateUserWinsInDatabase = (email, wins) => {
-  axios.put(`/api/wins/${email}/${wins}`);
+  axios.put(`https://battleship-production-eca6.up.railway.app/api/wins/${email}/${wins}`);
 };
 
 export const updateUserLossesInDatabase = (email, losses) => {
-  axios.put(`/api/losses/${email}/${losses}`);
+  axios.put(`https://battleship-production-eca6.up.railway.app/api/losses/${email}/${losses}`);
 };

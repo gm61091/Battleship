@@ -33,7 +33,7 @@ const Register = () => {
       } else {
         setMessage("");
         try {
-          const response = await axios.post("/register", {
+          const response = await axios.post("https://battleship-production-eca6.up.railway.app/register", {
             email,
             password,
             name,

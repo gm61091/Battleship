@@ -9,7 +9,7 @@ import { loadUserInfo } from "../actions/userActions";
 const checkToken = async () => {
   if (localStorage.token) {
     try {
-      const response = await axios.get("/protected", {
+      const response = await axios.get("https://battleship-production-eca6.up.railway.app/protected", {
         headers: {
           authorization: localStorage.token,
         },
