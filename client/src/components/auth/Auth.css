@@ -21,6 +21,6 @@
 }
 
 .background {
-  background-image: url("../../layout/battleshipImage.jpeg");
+  background-image: url("../../battleshipImage.jpeg");
   background-repeat: no-repeat;
 }
