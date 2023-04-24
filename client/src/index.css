@@ -8,6 +8,6 @@ body {
 }
 
 .background {
-  background-image: url("./battleshipImage.jpeg");
+  background-image: url("../public/images/placeholder.jpg");
   background-repeat: no-repeat;
 }
