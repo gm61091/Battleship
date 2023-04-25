@@ -17,7 +17,9 @@ Check out the Live Site [here](https://master.d2hm0jfignr46x.amplifyapp.com/), a
 
 
 - Demo of gameplay: 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/YZ7vUYK2cvs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<video width="560" height="315" controls>
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/YZ7vUYK2cvs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</video>
 
 
 ## Server Architecture
