@@ -13,9 +13,12 @@ Overall, the Battleship web application offers a modern take on a classic game, 
 
 ## Live site
 
-- add deployed backend link here ![Gameplay](./client/public/images/gameplay.png)
-- add deployed frontend link here ![Gameplay](./client/public/images/gameplay.png)
-- demo ![Gameplay](./client/public/images/gameplay.png)
+Check out the Live Site [here](https://master.d2hm0jfignr46x.amplifyapp.com/), and the backend for this project is deployed [here](https://battleship-production-eca6.up.railway.app).
+
+
+- Demo of gameplay: 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/YZ7vUYK2cvs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 
 ## Server Architecture
 
