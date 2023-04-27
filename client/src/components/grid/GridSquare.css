@@ -1,49 +1,51 @@
-.boat-square, .grid-square {
-    width: 4.8vw;
-    height: 7.6vh;
-    border: black solid 0.5px;
+.boat-square,
+.grid-square {
+  width: 4.8vw;
+  height: 7.6vh;
+  border: black solid 0.5px;
 }
 
-.comp-square, .grid-square {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.comp-square,
+.grid-square {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .comp-square {
-    border: black solid 0.25px;
-    height: 5.5vh;
-    width: 3.55vw;
-    background-color: rgba(189, 189, 189, 0.553);
-    font-size: 24px;
+  border: black solid 0.25px;
+  height: 5.5vh;
+  width: 3.55vw;
+  background-color: rgba(189, 189, 189, 0.553);
+  font-size: 24px;
 }
 
 .grid-square {
-    background-color: rgba(189, 189, 189, 0.553);
-    cursor: pointer;
-    font-size: 36px;
+  background-color: rgba(189, 189, 189, 0.553);
+  cursor: pointer;
+  font-size: 36px;
 }
 
 .highlighted {
-    background-color: rgba(11, 12, 12, 0.503);
+  background-color: rgba(11, 12, 12, 0.503);
 }
 
 .selected {
-    background-color: rgba(28, 4, 166, 0.503);
+  background-color: rgba(28, 4, 166, 0.503);
 }
 
 .sunk {
-    background-color: rgba(87, 0, 0, 0.503);
+  background-color: rgba(87, 0, 0, 0.503);
 }
 
 .ship {
-    display: flex;
-    flex-wrap: nowrap;
-    margin: 2px;
-    margin-left: 4px;
+  display: flex;
+  flex-wrap: nowrap;
+  margin: 2px;
+  margin-left: 4px;
 }
 
 .boat-square {
-    background-color: gray;
-    cursor: pointer;
+  background-color: gray;
+  cursor: pointer;
 }

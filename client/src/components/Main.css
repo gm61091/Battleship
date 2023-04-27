@@ -1,57 +1,56 @@
 .background {
-    height: 100vh;
+  height: 100vh;
 }
 
 .gameplay {
-    width: 90vw;
-    margin: auto;
-    display: flex;
+  width: 90vw;
+  margin: auto;
+  display: flex;
 }
 
-.player-board, .right-column {
-    height: 76vh;
+.player-board,
+.right-column {
+  height: 76vh;
 }
 
 .right-column {
-    width: 40vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  width: 40vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .player-board {
-    width: 51vw;
-    display: flex;
-    flex-wrap: wrap;
+  width: 51vw;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .computer-board {
-    height: 45vh;
-    display: flex;
-    flex-wrap: wrap;
+  height: 45vh;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .ship-yard {
-    height: 60vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: left;  
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: left;
 }
 
 .ship-yard-title {
-    text-align: center;
-    color: white;
-    font-family: 'Cinzel', serif;
-    font-size: 2.5rem;  
-    margin-bottom: 1rem; 
+  text-align: center;
+  color: white;
+  font-family: "Cinzel", serif;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
 }
 
 .game-btns {
-    width: 90vw;
-    margin: auto;
-    display: flex;
-    justify-content: center;
+  width: 90vw;
+  margin: auto;
+  display: flex;
+  justify-content: center;
 }
-
-
