@@ -172,7 +172,7 @@ passport.use(jwtLogin);
 
 ## Screenshots
 Register
-[!Register](./client/public/images/register-screenshot.png)
+![Screenshot of the registration page](./client/public/images/register-screenshot.png)
 Login
 [!Login](./client/public/images/login-screenshot.png)
 Place your Ships
