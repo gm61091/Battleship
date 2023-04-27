@@ -171,7 +171,20 @@ passport.use(jwtLogin);
 ```
 
 ## Screenshots
-- add screenshots here
+Register
+[!Register](./client/public/images/register-screenshot.png)
+Login
+[!Login](./client/public/images/login-screenshot.png)
+Place your Ships
+[!Place your Ships](./client/public/images/place-ships-screenshot.png)
+Confirm Placement
+[!Confirm Placement](./client/public/images/ships-placed-screenshot.png)
+Gameplay
+[!Gameplay](./client/public/images/gameplay-screenshot.png)
+Win a Game
+[!Win a Game](./client/public/images/win-screenshot.png)
+Lose a Game
+[!Lose a Game](./client/public/images/lose-screenshot.png)
 
 ## Creators
 - James Riddle, Project Manager - Portfolio | [Github](https://github.com/jamescr757)
