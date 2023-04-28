@@ -10,4 +10,5 @@ body {
 .background {
   background-image: url("../public/images/battleshipImage.jpg");
   background-repeat: no-repeat;
+  width: 100vw;
 }
