@@ -13,7 +13,7 @@ Overall, the Battleship web application offers a modern take on a classic game, 
 
 ## Live site
 
-Check out the [Live Site](https://master.d2hm0jfignr46x.amplifyapp.com/)! Our frontend is hosted on [Amplify](https://master.d2hm0jfignr46x.amplifyapp.com/), and the backend is deployed using [Railway](https://battleship-production-eca6.up.railway.app). Check out our demo of this app on [Youtube](https://www.youtube.com/embed/YZ7vUYK2cvs).
+Check out the [Live Site](https://master.d2hm0jfignr46x.amplifyapp.com/)! Our frontend is hosted on [Amplify](https://master.d2hm0jfignr46x.amplifyapp.com/), and the backend is deployed using [Heroku](https://hidden-tundra-22870.herokuapp.com). Check out our demo of this app on [Youtube](https://www.youtube.com/embed/YZ7vUYK2cvs).
 
 
 ## Server Architecture
