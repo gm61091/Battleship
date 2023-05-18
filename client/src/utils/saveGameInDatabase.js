@@ -9,7 +9,7 @@
 import axios from "axios";
 
 const saveGameInDatabase = (email, savedGame) => {
-  axios.post(`https://battleship-production-eca6.up.railway.app/api/saveGame/${email}`, { game: savedGame });
+  axios.post(`https://hidden-tundra-22870.herokuapp.com/api/saveGame/${email}`, { game: savedGame });
 };
 
 export default saveGameInDatabase;
