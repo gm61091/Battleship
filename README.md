@@ -1,5 +1,6 @@
 # Battleship
 
+
 Battleship is a classic board game that has been recreated in the form of a web application. This application offers a user-friendly interface and allows users to engage in a fun and challenging gameplay experience. 
 
 To access the game, users are required to register for an account or sign in with their existing account credentials. Once authenticated, the user can start a new game or load a previously saved one. The game starts with the user placing their ships on the board, and they can toggle the alignment of the ships to vertical or horizontal as needed.
